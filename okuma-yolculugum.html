@@ -3,6 +3,9 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Google Firebase Cloud Database SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <style>
 /* Düzen: tek sütun uygulama. Öğrencide üstte kitap rafı, altta kitap kartları; öğretmende özet ve sıralanabilir öğrenci listesi. */
 :root{
@@ -307,7 +310,8 @@ function confetti(){
 }
 var LOGO='<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 7c4-2 9-2 13 1v19c-4-3-9-3-13-1z" fill="currentColor" opacity=".85"/><path d="M29 7c-4-2-9-2-13 1v19c4-3 9-3 13-1z" fill="currentColor"/></svg>';
 function topbar(right){
-  return '<header class="top"><div class="brand">'+LOGO+'<span>Okuma Yolculuğum</span></div><div class="top-r"><span id="status" class="status" role="status"></span>'+right+'</div></header>';
+  var cloudBadge = S.cloud ? '<span class="status" style="color:var(--brand);font-weight:700">● Çevrimiçi Bulut</span>' : '';
+  return '<header class="top"><div class="brand">'+LOGO+'<span>Okuma Yolculuğum</span></div><div class="top-r">'+cloudBadge+'<span id="status" class="status" role="status"></span>'+right+'</div></header>';
 }
 function banner(){
   return '';
@@ -660,13 +664,25 @@ function onData(){
   render();
   var db=null;
   try{
-    var p=window.claude&&window.claude.use?window.claude.use('db'):null;
-    db=await Promise.race([Promise.resolve(p),new Promise(function(r){setTimeout(function(){r(null);},6000);})]);
-  }catch(e){db=null;}
-  try{
-    var dp=window.claude&&window.claude.use?window.claude.use('downloads'):null;
-    Promise.resolve(dp).then(function(d){S.dl=d||null;if(S.view==='teacher')render();}).catch(function(){});
-  }catch(e){}
+    var firebaseConfig = {
+      apiKey: "AIzaSyAW2WeIQKF9OH8LZCWY9yLvwnBpXzhcehI",
+      authDomain: "okuma-yolculugum.firebaseapp.com",
+      projectId: "okuma-yolculugum",
+      storageBucket: "okuma-yolculugum.firebasestorage.app",
+      messagingSenderId: "1029589352584",
+      appId: "1:1029589352584:web:b135f74a5547d5e26a5f3d"
+    };
+    if (typeof firebase !== 'undefined') {
+      if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+      }
+      db = firebase.firestore();
+    }
+  }catch(e){
+    console.warn("Firebase başlatma hatası:", e);
+    db=null;
+  }
+
   if(db){
     S.cloud=true;S.db=db;
     try{
@@ -674,7 +690,10 @@ function onData(){
         var m={};snap.docs.forEach(function(d){m[d.id]=d.data();});
         if(S.me&&S.view==='student')m[S.me.id]=m[S.me.id]||S.me;
         S.students=m;onData();
-      },function(){S.cloud=false;loadLocal();S.loaded=true;render();});
+      },function(err){
+        console.warn("Firestore dinleme hatası, yerel belleğe geçildi:", err);
+        S.cloud=false;loadLocal();S.loaded=true;render();
+      });
     }catch(e){S.cloud=false;loadLocal();S.loaded=true;render();}
     setTimeout(function(){if(!S.loaded&&S.view==='login'){var el=app.querySelector('.login .muted');if(el)el.textContent='Liste yüklenemedi. Bağlantını kontrol edip sayfayı yenile.';}},10000);
   }else{loadLocal();S.loaded=true;render();}
