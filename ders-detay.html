@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ders Detayı & Notlar | AkademiLab</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+
+    <!-- ÜST ÇUBUK -->
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="flex items-center gap-2 text-slate-500 hover:text-brand-600 transition-colors text-sm font-semibold">
+                    <i class="ph-bold ph-arrow-left text-lg"></i>
+                    <span>Tüm Derslere Dön</span>
+                </a>
+                <span class="text-slate-300 dark:text-slate-700">|</span>
+                <span class="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 truncate max-w-[200px] sm:max-w-xs md:max-w-md">
+                    Modül 1: Semantik HTML5 ve Erişilebilirlik
+                </span>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button id="themeToggle" class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">
+                    <i id="themeIcon" class="ph-bold ph-moon text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ANA GÖVDE (İKİ SÜTUNLU DÜZEN: MÜFREDAT + İÇERİK) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- SOL SÜTUN: MÜFREDAT VE BÖLÜM LİSTESİ -->
+        <aside class="lg:col-span-4 order-2 lg:order-1">
+            <div class="sticky top-24 bg-white dark:bg-slate-800/80 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-extrabold text-slate-900 dark:text-white text-base">Eğitim Müfredatı</h3>
+                    <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+                        1/5 Tamamlandı
+                    </span>
+                </div>
+
+                <div class="space-y-2 text-sm">
+                    <a href="#" class="flex items-center justify-between p-3 rounded-xl bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300 font-semibold border border-brand-200/80 dark:border-brand-700/50">
+                        <span class="flex items-center gap-2">
+                            <i class="ph-bold ph-check-circle text-emerald-500 text-lg"></i>
+                            1. Semantik HTML5 Temelleri
+                        </span>
+                        <span class="text-xs text-brand-500">18 dk</span>
+                    </a>
+
+                    <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 font-medium transition-colors">
+                        <span class="flex items-center gap-2">
+                            <i class="ph-bold ph-play-circle text-slate-400 text-lg"></i>
+                            2. CSS Flexbox ile Düzen Kurma
+                        </span>
+                        <span class="text-xs text-slate-400">22 dk</span>
+                    </a>
+
+                    <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 font-medium transition-colors">
+                        <span class="flex items-center gap-2">
+                            <i class="ph-bold ph-lock text-slate-400 text-lg"></i>
+                            3. Modern CSS Grid Mimarisi
+                        </span>
+                        <span class="text-xs text-slate-400">35 dk</span>
+                    </a>
+
+                    <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 font-medium transition-colors">
+                        <span class="flex items-center gap-2">
+                            <i class="ph-bold ph-lock text-slate-400 text-lg"></i>
+                            4. JavaScript DOM Etkileşimi
+                        </span>
+                        <span class="text-xs text-slate-400">40 dk</span>
+                    </a>
+
+                    <a href="#" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 font-medium transition-colors">
+                        <span class="flex items-center gap-2">
+                            <i class="ph-bold ph-lock text-slate-400 text-lg"></i>
+                            5. Pratik Proje: Portföy Sitesi
+                        </span>
+                        <span class="text-xs text-slate-400">55 dk</span>
+                    </a>
+                </div>
+
+                <!-- İndirme / Ek Kaynaklar Kutusu -->
+                <div class="mt-6 pt-6 border-t border-slate-200 dark:border-slate-700">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Bu Derse Ait Dosyalar</h4>
+                    <a href="#" class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:border-brand-500 transition-colors text-xs font-semibold text-slate-700 dark:text-slate-300">
+                        <i class="ph-bold ph-file-zip text-xl text-brand-600"></i>
+                        <div class="flex-1">
+                            <div>ders-kodlari-v1.zip</div>
+                            <div class="text-[10px] text-slate-400 font-normal">2.4 MB • Başlangıç Kodları</div>
+                        </div>
+                        <i class="ph-bold ph-download-simple text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- SAĞ SÜTUN: ASIL DERS İÇERİĞİ -->
+        <main class="lg:col-span-8 order-1 lg:order-2 space-y-8">
+            <!-- Video / Kapak Alanı -->
+            <div class="relative aspect-video rounded-3xl bg-slate-900 overflow-hidden shadow-xl flex items-center justify-center border border-slate-800">
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 rounded-full bg-brand-600/90 text-white flex items-center justify-center mx-auto text-3xl shadow-lg cursor-pointer hover:scale-110 transition-transform">
+                        <i class="ph-fill ph-play ml-1"></i>
+                    </div>
+                    <h2 class="text-white font-bold text-lg mt-4">1. Ders: Semantik HTML5 ve Erişilebilirlik</h2>
+                    <p class="text-xs text-slate-400 mt-1">Süre: 18 Dakika • 1080p HD Video Anlatım</p>
+                </div>
+            </div>
+
+            <!-- Ders Başlığı ve Meta Bilgileri -->
+            <div>
+                <div class="flex items-center gap-2 text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider">
+                    <span>Web Geliştirme Temelleri</span>
+                    <span>•</span>
+                    <span>Ders #1</span>
+                </div>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
+                    Semantik HTML5 Etiketleri Neden Hayati Önem Taşır?
+                </h1>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
+                    Son güncelleme: 14 Kasım 2026 • Okuma Süresi: 6 Dakika
+                </p>
+            </div>
+
+            <!-- Makale / Ders Notu Gövdesi -->
+            <article class="prose prose-slate dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed space-y-4 text-sm sm:text-base">
+                <p>
+                    Geleneksel web geliştirmede her kutu için bir <code>&lt;div&gt;</code> veya <code>&lt;span&gt;</code> kullanmak yaygın bir alışkanlıktı. Ancak modern web standartlarında semantik (anlamsal) etiketler kullanmak, hem arama motoru optimizasyonu (SEO) hem de ekran okuyucu kullanan engelli kullanıcılar (Erişilebilirlik - a11y) için kritik bir gerekliliktir.
+                </p>
+
+                <!-- Vurgu / İpucu Kutusu -->
+                <div class="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 text-amber-900 dark:text-amber-200 text-sm flex gap-3">
+                    <i class="ph-bold ph-lightbulb text-xl text-amber-600 shrink-0 mt-0.5"></i>
+                    <div>
+                        <strong class="font-bold">Önemli İpucu:</strong> Semantik etiketler yalnızca sayfa yapısını netleştirmekle kalmaz; Google ve diğer arama motoru botlarının sayfanızdaki en değerli içeriği anında indekslemesini sağlar.
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white pt-2">En Çok Kullanılan Semantik Etiketler</h3>
+                <ul class="list-disc pl-5 space-y-1.5 text-sm">
+                    <li><strong>&lt;header&gt;:</strong> Sayfanın veya bölümün giriş kısmını ve logoları barındırır.</li>
+                    <li><strong>&lt;nav&gt;:</strong> Ana gezinme linklerini temsil eder.</li>
+                    <li><strong>&lt;main&gt;:</strong> Sayfanın tek ve ana içeriğini kapsar.</li>
+                    <li><strong>&lt;article&gt;:</strong> Kendi başına anlam ifade eden bağımsız içerikleri (blog yazısı, haber vb.) temsil eder.</li>
+                    <li><strong>&lt;aside&gt;:</strong> Ana içerikle dolaylı ilişkili yan çubukları veya ek bilgileri belirtir.</li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white pt-2">Kod Örneği Karşılaştırması</h3>
+
+                <!-- Kod Bloğu -->
+                <div class="rounded-2xl bg-slate-900 text-slate-100 p-4 font-mono text-xs sm:text-sm overflow-x-auto border border-slate-800 shadow-md">
+                    <div class="text-slate-400 mb-2">// ❌ Yanlış Yaklaşım (Her yere Div):</div>
+                    <div class="text-rose-400">&lt;div class="header"&gt;&lt;div class="menu"&gt;...&lt;/div&gt;&lt;/div&gt;</div>
+                    <div class="text-rose-400">&lt;div class="content"&gt;...&lt;/div&gt;</div>
+                    
+                    <div class="text-slate-400 my-2">// ✅ Doğru & Semantik Yaklaşım:</div>
+                    <div class="text-emerald-400">&lt;header&gt;</div>
+                    <div class="text-emerald-400 pl-4">&lt;nav&gt;...&lt;/nav&gt;</div>
+                    <div class="text-emerald-400">&lt;/header&gt;</div>
+                    <div class="text-emerald-400">&lt;main&gt;</div>
+                    <div class="text-emerald-400 pl-4">&lt;article&gt;...&lt;/article&gt;</div>
+                    <div class="text-emerald-400">&lt;/main&gt;</div>
+                </div>
+
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white pt-2">Bölüm Sonu Uygulama Görevi</h3>
+                <p>
+                    Kendi bilgisayarınızda bir <code>index.html</code> dosyası açın. Yukarıda bahsettiğimiz <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code> ve <code>&lt;footer&gt;</code> etiketlerini kullanarak kendinizi tanıtan 3 paragraflık bir sayfa taslağı oluşturun.
+                </p>
+            </article>
+
+            <!-- Önceki / Sonraki Ders Butonları -->
+            <div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4">
+                <button disabled class="flex items-center gap-2 px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-400 text-xs sm:text-sm font-semibold cursor-not-allowed opacity-60">
+                    <i class="ph-bold ph-arrow-left"></i>
+                    Önceki Ders
+                </button>
+
+                <a href="#" class="flex items-center gap-2 px-5 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs sm:text-sm font-semibold transition-colors shadow-md shadow-brand-500/20">
+                    Sonraki Ders: Flexbox Düzeni
+                    <i class="ph-bold ph-arrow-right"></i>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Basit Dark Mode Eşleme
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+
+        function checkTheme() {
+            if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                themeIcon.classList.replace('ph-moon', 'ph-sun');
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeIcon.classList.replace('ph-sun', 'ph-moon');
+            }
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeIcon.classList.replace(isDark ? 'ph-moon' : 'ph-sun', isDark ? 'ph-sun' : 'ph-moon');
+        });
+
+        checkTheme();
+    </script>
+</body>
+</html>

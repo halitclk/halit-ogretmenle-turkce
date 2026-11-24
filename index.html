@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halit Öğretmenle Türkçe | Ortaokul Türkçe & LGS Rehberi</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Lora"', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                        },
+                        turkce: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-header {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+        }
+        .dark .glass-header {
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 font-sans">
+
+    <!-- ÜST MENÜ (NAVBAR) -->
+    <header class="sticky top-0 z-50 glass-header border-b border-slate-200/80 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-18 py-3">
+                <!-- Profil / Logo -->
+                <a href="#giris" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 to-rose-500 text-white flex items-center justify-center font-extrabold text-xl shadow-md shadow-amber-500/20 group-hover:scale-105 transition-transform">
+                        <i class="ph-bold ph-book-open-text"></i>
+                    </div>
+                    <div>
+                        <span class="font-extrabold text-lg tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5">
+                            Halit Öğretmenle Türkçe
+                            <span class="inline-block w-2 h-2 rounded-full bg-amber-500" title="Aktif Ortaokul Öğretmeni"></span>
+                        </span>
+                        <span class="block text-xs text-slate-500 dark:text-slate-400 font-medium">Halit Öğretmen • Ortaokul Türkçe & LGS Danışmanı</span>
+                    </div>
+                </a>
+
+                <!-- Navigasyon Linkleri -->
+                <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                    <a href="#felsefe" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors">Eğitim Yaklaşımım</a>
+                    <a href="#materyaller" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors">Türkçe & LGS Materyalleri</a>
+                    <a href="#sinif-uygulamalari" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors">Sınıflarıma Özel Uygulamalar</a>
+                    <a href="#ozgecmis" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors">Özgeçmiş</a>
+                    <a href="#kitap-onerileri" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors">Kitap Okuma</a>
+                    <a href="#iletisim" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors">İletişim</a>
+                </nav>
+
+                <!-- Sağ Butonlar -->
+                <div class="flex items-center gap-3">
+                    <button id="themeToggle" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="Temayı Değiştir">
+                        <i id="themeIcon" class="ph-bold ph-moon text-lg"></i>
+                    </button>
+                    <a href="#iletisim" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-semibold text-xs sm:text-sm transition-colors shadow-sm shadow-amber-500/30">
+                        <i class="ph-bold ph-calendar-check"></i>
+                        Veli Randevusu Al
+                    </a>
+                    <button id="mobileMenuBtn" class="md:hidden p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">
+                        <i class="ph-bold ph-list text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobil Menü -->
+        <div id="mobileMenu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-2 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+            <a href="#felsefe" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Eğitim Yaklaşımım</a>
+            <a href="#materyaller" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Türkçe & LGS Materyalleri</a>
+            <a href="#sinif-uygulamalari" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Sınıflarıma Özel Uygulamalar</a>
+            <a href="#ozgecmis" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Özgeçmiş</a>
+            <a href="#kitap-onerileri" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Kitap Okuma</a>
+            <a href="#iletisim" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">İletişim</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO BÖLÜMÜ -->
+        <section id="giris" class="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden">
+            <!-- Arka Plan Işık Efekti -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -z-10 w-[700px] h-[350px] bg-gradient-to-tr from-amber-400/20 via-rose-300/15 to-teal-400/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Sol Metin Alanı -->
+                    <div class="lg:col-span-7 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-300 text-xs sm:text-sm font-semibold mb-6">
+                            <i class="ph-fill ph-feather text-amber-500"></i>
+                            Ortaokul (5, 6, 7 & 8. Sınıf) • LGS Hazırlık • Okuma Kültürü
+                        </div>
+
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.18]">
+                            Okuyan, Anlayan ve <br class="hidden sm:inline">
+                            <span class="bg-gradient-to-r from-amber-600 via-rose-600 to-indigo-600 bg-clip-text text-transparent">Düşüncesini Özgürce İfade Eden</span> Nesiller
+                        </h1>
+
+                        <p class="mt-6 text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                            Merhaba! Ben <strong>Halit Öğretmen</strong>. Türkçe dersini kuru kurallardan ibaret olmaktan çıkarıp; <strong>yaratıcı yazarlık, kitap tahlilleri, sözel mantık ve yeni nesil LGS taktikleri</strong> ile bir keşif yolculuğuna dönüştürüyorum.
+                        </p>
+
+                        <!-- Hızlı Butonlar -->
+                        <div class="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                            <a href="#materyaller" class="px-6 py-3.5 rounded-2xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm transition-all shadow-lg shadow-amber-600/25 flex items-center gap-2">
+                                <i class="ph-bold ph-file-text text-lg"></i>
+                                Çalışma Kağıtları & LGS Denemeleri
+                            </a>
+                            <a href="#kitap-onerileri" class="px-6 py-3.5 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 font-bold text-sm transition-colors flex items-center gap-2">
+                                <i class="ph-bold ph-bookmarks text-lg text-amber-600"></i>
+                                Kitap Okuma Köşesi
+                            </a>
+                        </div>
+
+                        <!-- Başarı & Branş Metrikleri -->
+                        <div class="mt-12 grid grid-cols-3 gap-4 pt-8 border-t border-slate-200/80 dark:border-slate-800">
+                            <div>
+                                <div class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">10+ Yıl</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">Ortaokul Tecrübesi</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">%94</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">LGS Türkçe Başarı Ortalaması</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">200+</div>
+                                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">İncelenen Edebi Eser</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sağ Profil Kartı -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-sm">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-amber-500 to-rose-500 rounded-3xl rotate-3 blur-md opacity-30"></div>
+                            <div class="relative bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200/80 dark:border-slate-700 shadow-2xl">
+                                <!-- Öğretmen Görseli / Avatar -->
+                                <div class="w-full aspect-square rounded-2xl bg-gradient-to-tr from-amber-100 via-rose-50 to-orange-100 dark:from-slate-700 dark:to-slate-800 flex items-center justify-center overflow-hidden border border-slate-100 dark:border-slate-700 relative">
+                                    <i class="ph-duotone ph-book-open-user text-9xl text-amber-600 dark:text-amber-400"></i>
+                                    <div class="absolute bottom-3 left-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs font-bold text-slate-800 dark:text-slate-200 border border-slate-200/60 dark:border-slate-700 shadow-sm flex items-center gap-1.5">
+                                        <i class="ph-fill ph-check-circle text-emerald-600"></i>
+                                        MEB Türkçe Öğretmeni
+                                    </div>
+                                </div>
+
+                                <div class="mt-5 text-center">
+                                    <h3 class="text-lg font-extrabold text-slate-900 dark:text-white">Halit Öğretmen</h3>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Ortaokul Türkçe Öğretmeni & LGS Danışmanı</p>
+                                    
+                                    <!-- İlham Verici Söz -->
+                                    <div class="mt-4 p-3 rounded-xl bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200/60 dark:border-amber-800/40 text-[11px] text-amber-900 dark:text-amber-300 italic font-serif">
+                                        "Kelimeleri doğru kullanan bir nesil, geleceği doğru inşa eder."
+                                    </div>
+
+                                    <!-- Sosyal & İletişim Bağlantıları -->
+                                    <div class="mt-4 flex items-center justify-center gap-2">
+                                        <a href="#" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:text-amber-600 hover:bg-amber-50 transition-colors" title="EBA Paylaşımları">
+                                            <i class="ph-bold ph-graduation-cap text-lg"></i>
+                                        </a>
+                                        <a href="#" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:text-amber-600 hover:bg-amber-50 transition-colors" title="YouTube Dersleri">
+                                            <i class="ph-bold ph-youtube-logo text-lg"></i>
+                                        </a>
+                                        <a href="#" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:text-amber-600 hover:bg-amber-50 transition-colors" title="Kitap Kulübü / Goodreads">
+                                            <i class="ph-bold ph-books text-lg"></i>
+                                        </a>
+                                        <a href="mailto:halitogretmen@ornek.k12.tr" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:text-amber-600 hover:bg-amber-50 transition-colors" title="E-posta">
+                                            <i class="ph-bold ph-envelope text-lg"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TÜRKÇE DERSİ EĞİTİM YAKLAŞIMIM -->
+        <section id="felsefe" class="py-20 bg-white dark:bg-slate-900/50 border-y border-slate-200/80 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <span class="text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider">Pedagojik İlkeler</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">Türkçe Dersine Bakış Açım</h2>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm mt-3">Öğrencilerime dili sadece ezber kurallarıyla değil; 4 temel dil becerisini (Okuma, Dinleme, Konuşma, Yazma) bütüncül işleterek sevdiriyorum.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Sütun 1 -->
+                    <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 hover:shadow-lg transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="ph-bold ph-article-medium"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-base">Paragraf & Sözel Mantık</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                            LGS formatında yeni nesil grafik, tablo yorumlama ve akıl yürütme sorularında öğrencilere hızlı analiz ve odaklanma yöntemleri kazandırırım.
+                        </p>
+                    </div>
+
+                    <!-- Sütun 2 -->
+                    <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 hover:shadow-lg transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="ph-bold ph-pencil-line"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-base">Yaratıcı Yazarlık Atölyesi</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                            Duygu ve düşünceleri etkili paragraflarla kağıda dökebilme, betimleme yapabilme ve kendi hikayesini kaleme alabilme özgüveni geliştiririz.
+                        </p>
+                    </div>
+
+                    <!-- Sütun 3 -->
+                    <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 hover:shadow-lg transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-teal-100 dark:bg-teal-950/60 text-teal-600 dark:text-teal-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="ph-bold ph-books"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-base">Kitap Tahlili & Münazara</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                            Ayda en az bir seçkin eserin tahlilini yapar; sınıf içi münazaralarla farklı fikirleri saygıyla dinleme ve savunma becerisini pekiştiririz.
+                        </p>
+                    </div>
+
+                    <!-- Sütun 4 -->
+                    <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 hover:shadow-lg transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="ph-bold ph-puzzle-piece"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-base">Görsel Dil Bilgisi & Akıl Haritaları</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                            Fiilimsiler, cümlenin ögeleri ve anlatım bozuklukları gibi soyut konuları akıl haritaları ve şematik kodlamalarla kalıcı hale getiririm.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TÜRKÇE DERS MATERYALLERİ & ÇALIŞMA KAĞITLARI -->
+        <section id="materyaller" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                    <div>
+                        <span class="text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider">Açık Arşiv</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">Türkçe & LGS Materyalleri</h2>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Öğrencilerim için hazırladığım PDF konu özetleri, çalışma yaprakları ve LGS deneme fasikülleri.</p>
+                    </div>
+
+                    <!-- Kategori Butonları -->
+                    <div id="materialFilterBtns" class="flex flex-wrap gap-2">
+                        <button data-filter="all" class="mat-filter active px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-amber-600 text-white shadow-sm shadow-amber-600/30">Tümü</button>
+                        <button data-filter="lgs" class="mat-filter px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">8. Sınıf & LGS</button>
+                        <button data-filter="dil-bilgisi" class="mat-filter px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">Dil Bilgisi Notları</button>
+                        <button data-filter="okuma-yazma" class="mat-filter px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">Okuma & Tahlil Formları</button>
+                    </div>
+                </div>
+
+                <!-- Materyal Grid Listesi -->
+                <div id="materialsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dinamik JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </section>
+
+        <!-- KİTAP TAVSİYELERİ & OKUMA KÜLTÜRÜ (TÜRKÇE BRANŞINA ÖZEL BÖLÜM) -->
+        <section id="kitap-onerileri" class="py-20 bg-amber-50/50 dark:bg-slate-800/40 border-y border-amber-200/50 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <span class="text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider">Kitap Okuma & Tahlil Rehberi</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">Kitap Okuma Köşesi & Ayın Eserleri</h2>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm mt-3">Öğrencilerimin hayal gücünü besleyen, kelime dağarcığını geliştiren ve sınıf içi tahlillerde ele aldığımız seçkin eserler.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Kitap 1 -->
+                    <div class="p-5 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">5 ve 6. Sınıf</span>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white mt-2">Küçük Prens</h3>
+                            <p class="text-xs text-slate-500 font-medium">Antoine de Saint-Exupéry</p>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 line-clamp-3 leading-relaxed">
+                                Sevgi, dostluk, sorumluluk ve hayata çocuk gözüyle bakabilmenin derin felsefesi.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700 text-xs font-semibold text-amber-600 dark:text-amber-400 flex items-center justify-between">
+                            <span>Tahlil Formu Mevcut</span>
+                            <i class="ph-bold ph-check"></i>
+                        </div>
+                    </div>
+
+                    <!-- Kitap 2 -->
+                    <div class="p-5 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-teal-100 text-teal-800 dark:bg-teal-950 dark:text-teal-300">6 ve 7. Sınıf</span>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white mt-2">Kraliçeyi Kurtarmak</h3>
+                            <p class="text-xs text-slate-500 font-medium">Vladimir Tumanov</p>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 line-clamp-3 leading-relaxed">
+                                Matematik bilmeceleri ve macera dolu kurgusuyla kitap okumayı sevmeyen öğrencilere bile ilham olan bir başyapıt.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700 text-xs font-semibold text-teal-600 dark:text-teal-400 flex items-center justify-between">
+                            <span>Tahlil Formu Mevcut</span>
+                            <i class="ph-bold ph-check"></i>
+                        </div>
+                    </div>
+
+                    <!-- Kitap 3 -->
+                    <div class="p-5 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300">7 ve 8. Sınıf</span>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white mt-2">Şeker Portakalı</h3>
+                            <p class="text-xs text-slate-500 font-medium">José Mauro de Vasconcelos</p>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 line-clamp-3 leading-relaxed">
+                                Zeze'nin dokunaklı dünyası eşliğinde empati, şefkat ve edebi betimleme yeteneği kazanımı.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700 text-xs font-semibold text-rose-600 dark:text-rose-400 flex items-center justify-between">
+                            <span>Tahlil Formu Mevcut</span>
+                            <i class="ph-bold ph-check"></i>
+                        </div>
+                    </div>
+
+                    <!-- Kitap 4 -->
+                    <div class="p-5 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <span class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-950 dark:text-indigo-300">8. Sınıf / LGS</span>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white mt-2">Yankılı Kayalar</h3>
+                            <p class="text-xs text-slate-500 font-medium">Ahmet Yılmaz Boyunağa</p>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 line-clamp-3 leading-relaxed">
+                                Tarih bilinci, fedakarlık ve Türkçenin zengin deyim/atasözü yapısını öğreten klasikleşmiş bir roman.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700 text-xs font-semibold text-indigo-600 dark:text-indigo-400 flex items-center justify-between">
+                            <span>Tahlil Formu Mevcut</span>
+                            <i class="ph-bold ph-check"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ALT BAŞLIK / İNTERAKTİF UYGULAMA: OKUMA YOLCULUĞUM -->
+                <div class="mt-16 pt-12 border-t border-amber-200/60 dark:border-slate-700/80">
+                    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-10 border border-amber-200/80 dark:border-slate-700 shadow-xl">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+                            <div>
+                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-bold mb-2">
+                                    <i class="ph-bold ph-sparkle"></i>
+                                    İnteraktif Öğrenci Takip Sistemi
+                                </div>
+                                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                                    <span>📚 Okuma Yolculuğum</span>
+                                </h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 max-w-2xl leading-relaxed">
+                                    Öğrencilerimizin dönemlik okuma hedeflerini belirleyebildiği, sanal kitap raflarını doldurduğu, rozetler kazandığı ve öğretmen olarak sınıf ilerlemelerini anlık takip edebildiğimiz dijital okuma platformu.
+                                </p>
+                            </div>
+                            
+                            <!-- Hızlı Butonlar -->
+                            <div class="flex items-center gap-3 shrink-0">
+                                <a href="okuma-yolculugum.html" target="_blank" class="px-5 py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs sm:text-sm transition-colors shadow-md shadow-amber-600/30 flex items-center gap-2">
+                                    <i class="ph-bold ph-arrows-out"></i>
+                                    Tam Ekranda Aç
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 4 Öne Çıkan Özellik Kartı -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+                            <div class="p-4 rounded-2xl bg-amber-50/60 dark:bg-slate-900/60 border border-amber-200/50 dark:border-slate-700/60 text-center">
+                                <div class="text-2xl mb-1">🪵</div>
+                                <div class="font-bold text-xs text-slate-800 dark:text-slate-200">Sanal Kitap Rafı</div>
+                                <div class="text-[10px] text-slate-500 mt-0.5">Okudukça dolan renkli raf</div>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-amber-50/60 dark:bg-slate-900/60 border border-amber-200/50 dark:border-slate-700/60 text-center">
+                                <div class="text-2xl mb-1">🎖️</div>
+                                <div class="font-bold text-xs text-slate-800 dark:text-slate-200">8 Farklı Rozet</div>
+                                <div class="text-[10px] text-slate-500 mt-0.5">Motivasyon ve unvanlar</div>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-amber-50/60 dark:bg-slate-900/60 border border-amber-200/50 dark:border-slate-700/60 text-center">
+                                <div class="text-2xl mb-1">⭐</div>
+                                <div class="font-bold text-xs text-slate-800 dark:text-slate-200">Notlar & Yıldızlar</div>
+                                <div class="text-[10px] text-slate-500 mt-0.5">Kişisel kitap yorumları</div>
+                            </div>
+                            <div class="p-4 rounded-2xl bg-amber-50/60 dark:bg-slate-900/60 border border-amber-200/50 dark:border-slate-700/60 text-center">
+                                <div class="text-2xl mb-1">📊</div>
+                                <div class="font-bold text-xs text-slate-800 dark:text-slate-200">Öğretmen Paneli</div>
+                                <div class="text-[10px] text-slate-500 mt-0.5">Sınıf analizi & CSV rapor</div>
+                            </div>
+                        </div>
+
+                        <!-- Canlı Önizleme / Gömülü Iframe Alanı -->
+                        <div class="rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-inner bg-slate-100 dark:bg-slate-900 relative">
+                            <div class="bg-slate-200 dark:bg-slate-800 px-4 py-2.5 border-b border-slate-300 dark:border-slate-700 flex items-center justify-between text-xs text-slate-600 dark:text-slate-400">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-rose-400 inline-block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block"></span>
+                                    <span class="font-semibold text-slate-700 dark:text-slate-300 ml-2">Okuma Yolculuğum — Canlı Öğrenci & Öğretmen Portalı</span>
+                                </div>
+                                <a href="okuma-yolculugum.html" target="_blank" class="hover:text-amber-600 font-semibold flex items-center gap-1">
+                                    Ayrı sekmede aç <i class="ph-bold ph-arrow-square-out"></i>
+                                </a>
+                            </div>
+                            <iframe src="okuma-yolculugum.html" title="Okuma Yolculuğum Uygulaması" class="w-full h-[650px] border-0" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SINIFLARIMA ÖZEL UYGULAMALAR (5, 6, 7 VE 8. SINIF DİJİTAL ATÖLYELER) -->
+        <section id="sinif-uygulamalari" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <span class="text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider">İnteraktif Sınıf Portalları</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">Sınıflarıma Özel Uygulamalar</h2>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm mt-3">Her sınıf düzeyinin kazanımlarına, yaş grubuna ve LGS hedeflerine özel olarak tasarladığım dijital öğrenme araçları.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- 5. Sınıf Uygulaması -->
+                    <div class="rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 p-6 shadow-sm flex flex-col justify-between hover:border-amber-500/50 hover:shadow-xl transition-all group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">5. Sınıf</span>
+                                <div class="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                    <i class="ph-bold ph-cards"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white">Kelime Avcısı & Deyim Sandığı</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                                Eş ve zıt anlamlı kelimeler, deyimlerin hikayeleri ve interaktif kelime eşleştirme oyunları.
+                            </p>
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Sözcükte Anlam</span>
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Oyunlaştırma</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between">
+                            <span class="text-[11px] text-emerald-600 font-bold flex items-center gap-1">
+                                <i class="ph-fill ph-check-circle"></i> Aktif Kullanımda
+                            </span>
+                            <button onclick="downloadMaterial('turkce-03')" class="text-xs font-bold text-amber-600 hover:text-amber-700 flex items-center gap-1">
+                                İncele <i class="ph-bold ph-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 6. Sınıf Uygulaması -->
+                    <div class="rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 p-6 shadow-sm flex flex-col justify-between hover:border-teal-500/50 hover:shadow-xl transition-all group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-teal-100 text-teal-800 dark:bg-teal-950 dark:text-teal-300">6. Sınıf</span>
+                                <div class="w-10 h-10 rounded-xl bg-teal-50 dark:bg-teal-950/60 text-teal-600 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                    <i class="ph-bold ph-magnifying-glass"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white">Metin Dedektifi & Olay Örgüsü</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                                Serim, düğüm, çözüm tespiti; hikaye unsurlarını çözümleme ve ana fikir dedektifliği etkinlikleri.
+                            </p>
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Metin Türleri</span>
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Hikaye Kurgusu</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between">
+                            <span class="text-[11px] text-emerald-600 font-bold flex items-center gap-1">
+                                <i class="ph-fill ph-check-circle"></i> Aktif Kullanımda
+                            </span>
+                            <button onclick="downloadMaterial('turkce-06')" class="text-xs font-bold text-teal-600 hover:text-teal-700 flex items-center gap-1">
+                                İncele <i class="ph-bold ph-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 7. Sınıf Uygulaması -->
+                    <div class="rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 p-6 shadow-sm flex flex-col justify-between hover:border-rose-500/50 hover:shadow-xl transition-all group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300">7. Sınıf</span>
+                                <div class="w-10 h-10 rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-600 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                    <i class="ph-bold ph-chats-circle"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white">Düşünce Atölyesi & Argüman Fabrikası</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                                Öznel-nesnel yargı ayrımı, düşünceyi geliştirme yolları ve münazara hazırlık kartları.
+                            </p>
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Anlatım Biçimleri</span>
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Münazara</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between">
+                            <span class="text-[11px] text-emerald-600 font-bold flex items-center gap-1">
+                                <i class="ph-fill ph-check-circle"></i> Aktif Kullanımda
+                            </span>
+                            <button onclick="downloadMaterial('turkce-04')" class="text-xs font-bold text-rose-600 hover:text-rose-700 flex items-center gap-1">
+                                İncele <i class="ph-bold ph-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 8. Sınıf / LGS Uygulaması -->
+                    <div class="rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 p-6 shadow-sm flex flex-col justify-between hover:border-indigo-500/50 hover:shadow-xl transition-all group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-950 dark:text-indigo-300">8. Sınıf / LGS</span>
+                                <div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                    <i class="ph-bold ph-timer"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white">LGS Sözel Mantık & Zaman Koçu</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                                20 dakikada 20 soru temposu, grafik-tablo yorumlama simülatörü ve çıkmış soru haritaları.
+                            </p>
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">LGS 2026</span>
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Hız & Taktik</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between">
+                            <span class="text-[11px] text-emerald-600 font-bold flex items-center gap-1">
+                                <i class="ph-fill ph-check-circle"></i> Aktif Kullanımda
+                            </span>
+                            <button onclick="downloadMaterial('turkce-02')" class="text-xs font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-1">
+                                İncele <i class="ph-bold ph-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ÖZGEÇMİŞ & EĞİTİM GEÇMİŞİ -->
+        <section id="ozgecmis" class="py-20 bg-white dark:bg-slate-900/50 border-y border-slate-200/80 dark:border-slate-800">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-14">
+                    <span class="text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider">Kariyer & Eğitim</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">Halit Öğretmen — Özgeçmiş & Kariyer</h2>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm mt-2">Mesleki yolculuğum, akademik eğitimlerim ve katıldığım seminerler.</p>
+                </div>
+
+                <div class="relative border-l-2 border-amber-500/30 ml-4 sm:ml-32 space-y-10">
+                    
+                    <!-- Deneyim 1 -->
+                    <div class="relative pl-8 group">
+                        <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-amber-600 ring-4 ring-white dark:ring-slate-900"></span>
+                        <span class="hidden sm:block absolute -left-32 top-1 text-xs font-bold text-amber-600 dark:text-amber-400">2018 — Günümüz</span>
+                        <div class="bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-700 shadow-sm">
+                            <span class="sm:hidden inline-block text-xs font-bold text-amber-600 dark:text-amber-400 mb-1">2018 — Günümüz</span>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Türkçe Zümre Başkanı & LGS Koordinatörü</h3>
+                            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-0.5">MEB / Devlet Ortaokulu</div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
+                                8. sınıf LGS Türkçe hazırlık kampları, soru yazım komisyonu üyeliği, okul kütüphanesi zenginleştirme projesi koordinasyonu.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Deneyim 2 -->
+                    <div class="relative pl-8 group">
+                        <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-700 ring-4 ring-white dark:ring-slate-900"></span>
+                        <span class="hidden sm:block absolute -left-32 top-1 text-xs font-bold text-slate-500 dark:text-slate-400">2014 — 2018</span>
+                        <div class="bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-700 shadow-sm">
+                            <span class="sm:hidden inline-block text-xs font-bold text-slate-500 mb-1">2014 — 2018</span>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Türkçe Öğretmenliği Lisans Mezuniyeti</h3>
+                            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-0.5">Gazi Üniversitesi / Eğitim Fakültesi — Türkçe Eğitimi Ana Bilim Dalı</div>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
+                                Çocuk edebiyatı, anlama-anlatma teknikleri, dil bilgisi öğretim metodolojileri ve yaratıcı drama üzerine uzmanlık dersleri.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Deneyim 3 -->
+                    <div class="relative pl-8 group">
+                        <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-700 ring-4 ring-white dark:ring-slate-900"></span>
+                        <span class="hidden sm:block absolute -left-32 top-1 text-xs font-bold text-slate-500 dark:text-slate-400">Sertifikalar</span>
+                        <div class="bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-700 shadow-sm">
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white">Mesleki Gelişim & Belgeler</h3>
+                            <div class="mt-3 flex flex-wrap gap-2 text-xs">
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 font-medium">MEB Ölçme ve Değerlendirme Soru Yazarlığı Eğitimi</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 font-medium">Yaratıcı Drama Liderliği Belgesi</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 font-medium">Hızlı Okuma ve Anlama Eğitmenliği</span>
+                                <span class="px-3 py-1 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 font-medium">Masal Anlatıcılığı Atölye Sertifikası</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- İLETİŞİM & VELİ RANDEVU FORMU -->
+        <section id="iletisim" class="py-20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-gradient-to-br from-amber-600 via-rose-600 to-indigo-800 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
+                    <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                        <div class="md:col-span-5">
+                            <span class="text-amber-200 text-xs font-bold uppercase tracking-wider">İletişimde Kalalım</span>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold mt-1">Veli Görüşmesi veya Soru Sorun</h2>
+                            <p class="text-xs sm:text-sm text-amber-100 mt-3 leading-relaxed">
+                                Öğrencimizin okuma alışkanlığı, LGS Türkçe netleri veya ders durumu hakkında görüşmek için randevu oluşturabilirsiniz.
+                            </p>
+                            
+                            <div class="mt-6 space-y-2 text-xs text-amber-50">
+                                <div class="flex items-center gap-2">
+                                    <i class="ph-bold ph-calendar-blank text-base"></i>
+                                    <span>Veli Görüşme Saati: Çarşamba 13:30 - 15:45</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i class="ph-bold ph-envelope text-base"></i>
+                                    <span>halitogretmen@ornekokul.k12.tr</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-7 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 p-6 rounded-2xl shadow-lg">
+                            <form id="contactForm" class="space-y-3">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Veli / Öğrenci Adı Soyadı</label>
+                                    <input type="text" required placeholder="Örn: Fatma Hanım" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Öğrencinin Sınıfı</label>
+                                        <select class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                                            <option>5. Sınıf</option>
+                                            <option>6. Sınıf</option>
+                                            <option>7. Sınıf</option>
+                                            <option selected>8. Sınıf (LGS)</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Telefon Numarası</label>
+                                        <input type="text" required placeholder="05XX..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 dark:text-slate-400 mb-1">Görüşme Konusu veya Notunuz</label>
+                                    <textarea rows="3" required placeholder="Görüşmek istediğiniz konu (paragraf netleri, kitap okuma vb.)..." class="w-full px-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none"></textarea>
+                                </div>
+                                <button type="submit" class="w-full py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs transition-colors shadow-md shadow-amber-600/30">
+                                    Randevu Talebini Gönder
+                                </button>
+                                <div id="formSuccess" class="hidden text-center text-xs text-emerald-600 font-bold pt-2">
+                                    ✓ Randevu talebiniz alındı! En kısa sürede dönüş sağlanacaktır.
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 py-8 text-center text-xs text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="w-7 h-7 rounded-lg bg-amber-600 text-white flex items-center justify-center font-bold">H</span>
+                <span class="font-bold text-slate-800 dark:text-slate-200">Halit Öğretmenle Türkçe — Halit Öğretmen</span>
+            </div>
+            <p>© 2026 Türkçe sevgisini ve okuma kültürünü geleceğe taşımak amacıyla hazırlanmıştır.</p>
+            <div class="flex items-center gap-4">
+                <a href="#giris" class="hover:underline">Başa Dön ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MATERYAL İNDİRME BİLGİ MODALI -->
+    <div id="materialModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full border border-slate-200 dark:border-slate-700 p-6 shadow-2xl relative text-center">
+            <div class="w-14 h-14 rounded-2xl bg-amber-100 dark:bg-amber-950/60 text-amber-600 mx-auto flex items-center justify-center text-3xl mb-4">
+                <i class="ph-bold ph-file-arrow-down"></i>
+            </div>
+            <h3 id="modalMaterialTitle" class="text-lg font-bold text-slate-900 dark:text-white">Çalışma Kağıdı İndiriliyor</h3>
+            <p id="modalMaterialDesc" class="text-xs text-slate-500 dark:text-slate-400 mt-2">Bu materyal ortaokul öğrencilerinin pekiştirmesi için ücretsiz sunulmuştur.</p>
+            <div class="mt-6 flex items-center gap-3">
+                <button id="closeMatModal" class="flex-1 py-2.5 rounded-xl bg-amber-600 text-white text-xs font-bold hover:bg-amber-700 transition-colors">
+                    Kapat
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Dosyası -->
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+Bu klasör ("dosyalar") içine öğrencilerinize indirtmek istediğiniz tüm dosyaları (PDF, Word, Excel, PowerPoint veya ZIP) koyabilirsiniz.
+
+Nasıl kullanılır?
+1. PDF veya çalışma kağıdı dosyanızı bu klasörün içine atın (Örnek: lgs-deneme-1.pdf)
+2. app.js dosyasındaki ilgili materyalin "fileUrl" alanına "dosyalar/lgs-deneme-1.pdf" yazın.
+3. Sitenizdeki "İndir" butonuna basıldığında dosya doğrudan öğrencinin cihazına inecektir!

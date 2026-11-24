@@ -1,0 +1,685 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Okuma Yolculuğum</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Düzen: tek sütun uygulama. Öğrencide üstte kitap rafı, altta kitap kartları; öğretmende özet ve sıralanabilir öğrenci listesi. */
+:root{
+  --font-display:'Fraunces',Georgia,serif;
+  --font-body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --bg:#F4F0E3; --surface:#FFFFFF; --surface-2:#FAF7EC; --ink:#232A3B; --muted:#6A6555; --line:#DDD4BA;
+  --brand:#2F5233; --on-brand:#FFFFFF; --brand-soft:#E3EDDF;
+  --accent:#A6402F; --on-accent:#FFFFFF; --gold:#B7821F;
+  --good:#2F7A3E; --warn:#9A5A14; --warn-soft:#F6E7D2;
+  --s1:#2F6B45; --s2:#A6402F; --s3:#2F5F8F; --s4:#7B3F61; --s5:#1F6F6B; --s6:#8A5A1E;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141A14; --surface:#1C241C; --surface-2:#222C22; --ink:#ECEADC; --muted:#A5A391; --line:#34402F;
+    --brand:#8CC796; --on-brand:#0E1A10; --brand-soft:#24392A;
+    --accent:#E58570; --on-accent:#1B0D09; --gold:#E2B550;
+    --good:#8ED19A; --warn:#E6A862; --warn-soft:#3A2B17;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141A14; --surface:#1C241C; --surface-2:#222C22; --ink:#ECEADC; --muted:#A5A391; --line:#34402F;
+  --brand:#8CC796; --on-brand:#0E1A10; --brand-soft:#24392A;
+  --accent:#E58570; --on-accent:#1B0D09; --gold:#E2B550;
+  --good:#8ED19A; --warn:#E6A862; --warn-soft:#3A2B17;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 56px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto}
+h1,h2,h3{font-family:var(--font-display);margin:0;text-wrap:balance;line-height:1.2}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+input,textarea,select{font:inherit;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;min-width:0}
+textarea{resize:vertical;min-height:84px}
+label{font-size:13px;font-weight:600;color:var(--muted)}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0 14px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:19px;color:var(--brand)}
+.brand svg{width:26px;height:26px}
+.top-r{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.status{font-size:12.5px;color:var(--muted)}
+.status.err{color:var(--accent);font-weight:600}
+
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 14px;font-weight:600;font-size:14px;min-height:40px}
+.btn:hover{border-color:var(--brand)}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.danger{border-color:var(--accent);color:var(--accent)}
+.btn.danger.solid{background:var(--accent);color:var(--on-accent)}
+.btn.block{width:100%}
+.link{background:none;border:none;padding:6px 2px;color:var(--brand);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px}
+.banner{background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:10px 14px;font-size:13.5px;margin-bottom:14px}
+.sec{margin-top:26px}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.sec-h h2{font-size:20px;color:var(--brand)}
+
+/* Giriş */
+.login{max-width:560px;margin:16px auto 0}
+.login h1{font-size:28px}
+.login .lead{color:var(--muted);margin:6px 0 18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.chip{border:1.5px solid var(--line);background:var(--surface-2);border-radius:999px;padding:7px 16px;font-weight:700;font-size:14px}
+.chip[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+.roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:16px}
+.pick{display:flex;align-items:center;gap:10px;text-align:left;border:1.5px solid var(--line);background:var(--surface-2);border-radius:12px;padding:8px 10px;min-width:0}
+.pick[aria-pressed="true"]{border-color:var(--brand);background:var(--brand-soft)}
+.pick span.nm{font-weight:600;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.avatar{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--brand-soft);font-size:22px;flex:none;border:0;padding:0}
+.avatar.xl{width:76px;height:76px;font-size:42px;border:2px solid var(--line)}
+button.avatar:hover{outline:2px solid var(--brand)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-grid .full{grid-column:1/-1}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.err-t{color:var(--accent);font-weight:600;font-size:13.5px;min-height:20px}
+.av-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.av-grid button{aspect-ratio:1;border-radius:12px;border:1.5px solid var(--line);background:var(--surface-2);font-size:26px;padding:0}
+.av-grid button[aria-pressed="true"]{border-color:var(--brand);background:var(--brand-soft);outline:2px solid var(--brand)}
+
+/* Öğrenci üst alan */
+.hero-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.hero-top .who{flex:1;min-width:180px}
+.hero-top h1{font-size:26px}
+.hero-top .who p{color:var(--muted);font-size:14px}
+.goalbox{display:flex;align-items:center;gap:10px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;font-weight:600;color:var(--muted)}
+.stepper{display:flex;align-items:center;gap:8px}
+.stepper button{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);background:var(--surface);font-size:20px;line-height:1;padding:0}
+.stepper output{font-family:var(--font-display);font-weight:700;font-size:24px;color:var(--ink);min-width:30px;text-align:center}
+.picker{margin-top:16px;padding-top:16px;border-top:1px dashed var(--line)}
+.prog{display:flex;align-items:center;gap:16px;margin-top:20px}
+.pct{font-family:var(--font-display);font-weight:700;font-size:44px;color:var(--brand);line-height:1;min-width:98px}
+.pct small{font-size:22px}
+.prog strong{font-size:17px}
+.shelf{display:flex;flex-wrap:wrap;gap:6px;align-items:flex-end;margin-top:20px;padding:0 6px;border-bottom:8px solid var(--line);min-height:140px}
+.spine{width:30px;border-radius:4px 4px 0 0;flex:none;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid rgba(255,255,255,.18)}
+.spine span{writing-mode:vertical-rl;max-height:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:8px 0;font-size:11px;font-weight:600;color:#fff}
+.spine.empty{border:2px dashed var(--line);background:transparent}
+.spine.part{border:2px dashed var(--c);background:linear-gradient(to top,var(--c) var(--fill),transparent var(--fill))}
+.rank{margin-top:18px;display:grid;gap:6px}
+.rank-top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13.5px}
+.rank-top b{color:var(--brand)}
+.bar{height:10px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--brand);border-radius:999px;transition:width .5s ease}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.stat b{display:block;font-family:var(--font-display);font-size:26px;color:var(--brand);line-height:1.1}
+.stat span{font-size:12.5px;color:var(--muted)}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:10px}
+.badge{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 8px;text-align:center;display:grid;gap:4px;justify-items:center}
+.badge .ic{font-size:28px;line-height:1}
+.badge b{font-size:12.5px}
+.badge small{font-size:11.5px;color:var(--muted)}
+.badge.locked{opacity:.5}
+.badge.locked .ic{filter:grayscale(1)}
+
+/* Kitaplar */
+.add{display:grid;grid-template-columns:1fr 130px auto;gap:10px;align-items:end}
+.add .btn{height:44px}
+.books{display:grid;gap:12px;margin-top:14px}
+.book{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:12px}
+.book.done{border-color:var(--brand)}
+.book-h{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.book-h h3{font-size:17px;overflow-wrap:anywhere}
+.book-h p{font-size:13px;color:var(--muted)}
+.check{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink);font-weight:700;white-space:nowrap;min-height:40px}
+.check input{width:24px;height:24px;accent-color:var(--brand);padding:0}
+.ctrl{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ctrl .rd{display:flex;align-items:center;gap:8px}
+.ctrl .rd input{width:84px}
+.mini{border:1.5px solid var(--line);background:var(--surface-2);border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px;min-height:36px}
+.stars{display:flex;gap:2px;margin-left:auto}
+.stars button{background:none;border:none;font-size:24px;padding:2px 3px;color:var(--line);line-height:1}
+.stars button.on{color:var(--gold)}
+details.note summary{cursor:pointer;font-weight:600;font-size:14px;color:var(--brand);padding:4px 0}
+details.note textarea{margin-top:8px}
+.del-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13.5px}
+.empty-state{border:1.5px dashed var(--line);border-radius:14px;padding:26px;text-align:center;color:var(--muted);background:var(--surface)}
+
+/* Öğretmen */
+.sum{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.cls-list{display:grid;gap:8px}
+.cls-row{display:grid;grid-template-columns:70px 1fr auto;gap:12px;align-items:center;font-size:14px}
+.cls-row b{font-family:var(--font-display);font-size:16px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.toolbar input{flex:1;min-width:160px}
+.toolbar select{width:auto;min-width:130px}
+.srow{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1.3fr) 80px minmax(0,1fr);gap:14px;align-items:center;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:8px}
+.srow:hover{border-color:var(--brand)}
+.srow .nm{display:flex;align-items:center;gap:10px;min-width:0}
+.srow .nm div{min-width:0}
+.srow .nm b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.srow .nm small{color:var(--muted)}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:999px;background:var(--warn-soft);color:var(--warn);margin-top:2px}
+.tag.ok{background:var(--brand-soft);color:var(--brand)}
+.pgs{font-variant-numeric:tabular-nums;font-size:14px}
+@media(max-width:640px){
+  .form-grid{grid-template-columns:1fr}
+  .add{grid-template-columns:1fr 1fr}
+  .add .btn{grid-column:1/-1}
+  .stats{grid-template-columns:1fr 1fr 1fr}
+  .stat b{font-size:22px}
+  .sum{grid-template-columns:1fr 1fr}
+  .srow{grid-template-columns:1fr 1fr;row-gap:8px}
+  .srow .nm{grid-column:1/-1}
+  .pct{font-size:36px;min-width:84px}
+  .av-grid{grid-template-columns:repeat(4,1fr)}
+}
+.modal{position:fixed;inset:0;background:rgba(10,14,10,.55);display:flex;align-items:flex-start;justify-content:center;padding:max(18px,env(safe-area-inset-top,0px)) 14px 18px;overflow-y:auto;z-index:50}
+.sheet{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;width:100%;max-width:640px;display:grid;gap:14px}
+.sheet-h{display:flex;align-items:center;gap:14px}
+.sheet-h h2{font-size:22px}
+.ro-book{border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:8px;background:var(--surface-2)}
+.ro-book p.note{white-space:pre-wrap;font-size:14px;background:var(--surface);border-radius:8px;padding:8px 10px;overflow-wrap:anywhere}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--brand);color:var(--on-brand);padding:12px 18px;border-radius:12px;font-weight:600;font-size:14px;max-width:min(92vw,460px);text-align:center;z-index:80;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.conf{position:fixed;top:-12px;width:9px;height:14px;z-index:90;pointer-events:none;border-radius:2px;animation:fall 1.9s ease-in forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(540deg);opacity:.9}}
+@media (prefers-reduced-motion:reduce){.conf{display:none}.bar i{transition:none}}
+.foot{text-align:center;margin-top:22px}
+</style>
+
+<div class="wrap" id="app" aria-live="polite"></div>
+<div id="toast" class="toast" hidden role="status"></div>
+
+<script>
+(function(){
+'use strict';
+var app=document.getElementById('app');
+var AVATARS=['🦊','🐼','🦉','🐯','🐙','🦄','🐸','🐧','🦁','🐨','🐰','🐲'];
+var RANKS=[[0,'Yeni Okur'],[1,'Sayfa Çevirici'],[3,'Kitap Kurdu'],[5,'Kütüphane Gezgini'],[8,'Okuma Ustası'],[12,'Okuma Şampiyonu']];
+var LS='oy-okuma-yolculugu-v1';
+
+var S={cloud:false,db:null,dl:null,loaded:false,synced:false,students:{},teacherHash:undefined,
+  view:'login',me:null,login:{cls:'',id:'',err:''},reg:{av:AVATARS[0],err:''},
+  tf:{cls:'',q:'',sort:'name'},ui:{open:{},del:null,av:false,modal:null,modalDel:false,tmsg:''}};
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function today(){return new Date().toISOString().slice(0,10);}
+function clone(o){return JSON.parse(JSON.stringify(o));}
+function slug(s){return String(s).toLocaleLowerCase('tr').replace(/ç/g,'c').replace(/ğ/g,'g').replace(/ı/g,'i').replace(/ö/g,'o').replace(/ş/g,'s').replace(/ü/g,'u').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60)||'x';}
+function rid(){return 'b'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function num(v,min,max){var n=parseInt(v,10);if(isNaN(n))n=0;return Math.max(min,Math.min(max,n));}
+async function hash(id,pin){
+  var str='oy1:'+id+':'+pin;
+  try{var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0');}).join('');}
+  catch(e){var h=5381;for(var i=0;i<str.length;i++){h=((h<<5)+h+str.charCodeAt(i))|0;}return 'x'+(h>>>0).toString(16);}
+}
+function timeAgo(ts){
+  if(!ts)return 'henüz yok';
+  var d=Math.floor((Date.now()-ts)/86400000);
+  if(d<=0)return 'bugün';if(d===1)return 'dün';if(d<30)return d+' gün önce';return Math.floor(d/30)+' ay önce';
+}
+
+/* ---------- Hesaplamalar ---------- */
+function calc(s){
+  var books=s.books||[],done=books.filter(function(b){return b.done;}).length;
+  var pages=books.reduce(function(a,b){return a+(b.r||0);},0);
+  var pct=s.goal?Math.min(100,Math.round(done/s.goal*100)):0;
+  return {done:done,reading:books.length-done,pages:pages,pct:pct};
+}
+function rankOf(done){var i=0;for(var k=0;k<RANKS.length;k++){if(done>=RANKS[k][0])i=k;}return i;}
+function badgesOf(s){
+  var books=s.books||[],c=calc(s);
+  var notes=books.filter(function(b){return (b.note||'').trim();}).length;
+  return [
+    {ic:'📖',n:'İlk Kitap',d:'1 kitap bitir',ok:c.done>=1},
+    {ic:'📚',n:'Üç Kitap',d:'3 kitap bitir',ok:c.done>=3},
+    {ic:'🎯',n:'Hedef Tamam',d:'Hedefine ulaş',ok:s.goal>0&&c.done>=s.goal},
+    {ic:'🔖',n:'500 Sayfa',d:'500 sayfa oku',ok:c.pages>=500},
+    {ic:'🏔️',n:'1000 Sayfa',d:'1000 sayfa oku',ok:c.pages>=1000},
+    {ic:'📝',n:'Not Yazarı',d:'3 kitaba not yaz',ok:notes>=3},
+    {ic:'⭐',n:'Beş Yıldız',d:'Bir kitaba 5 yıldız ver',ok:books.some(function(b){return b.star===5;})},
+    {ic:'🧱',n:'Kalın Kitap',d:'300+ sayfalık kitabı bitir',ok:books.some(function(b){return b.done&&b.p>=300;})}
+  ];
+}
+
+/* ---------- Depolama ---------- */
+function loadLocal(){
+  try{var d=JSON.parse(localStorage.getItem(LS)||'null');if(d){S.students=d.students||{};S.teacherHash=d.teacher||null;}}catch(e){}
+  if(S.teacherHash===undefined)S.teacherHash=null;
+}
+function saveLocal(){try{localStorage.setItem(LS,JSON.stringify({students:S.students,teacher:S.teacherHash}));}catch(e){}}
+async function persist(s){
+  if(S.cloud){await S.db.doc('students/'+s.id).set(s);}
+  S.students[s.id]=s;
+  if(!S.cloud)saveLocal();
+}
+async function removeStudent(id){
+  if(S.cloud){await S.db.doc('students/'+id).delete();}
+  delete S.students[id];
+  if(!S.cloud)saveLocal();
+}
+async function getTeacherHash(){
+  if(S.cloud){
+    try{var snap=await S.db.doc('config/teacher').get();return snap.exists?(snap.data().hash||null):null;}catch(e){return null;}
+  }
+  return S.teacherHash||null;
+}
+async function setTeacherHash(h){
+  if(S.cloud){await S.db.doc('config/teacher').set({hash:h});}
+  else{S.teacherHash=h;saveLocal();}
+}
+
+var saveTimer=null,chain=Promise.resolve();
+function setStatus(t){
+  var el=document.getElementById('status');if(!el)return;
+  el.className='status'+(t==='error'?' err':'');
+  el.textContent=t==='saving'?'Kaydediliyor…':t==='saved'?'Kaydedildi ✓':t==='error'?'Kaydedilemedi, tekrar dene':'';
+}
+function touch(){
+  S.me.updated=Date.now();setStatus('saving');
+  clearTimeout(saveTimer);saveTimer=setTimeout(flush,500);
+}
+function flush(){
+  clearTimeout(saveTimer);saveTimer=null;
+  if(!S.me)return chain;
+  var snap=clone(S.me);
+  chain=chain.then(function(){return persist(snap);}).then(function(){setStatus('saved');}).catch(function(){setStatus('error');});
+  return chain;
+}
+
+/* ---------- Yardımcılar ---------- */
+var toastT=null;
+function toast(msg){
+  var t=document.getElementById('toast');t.textContent=msg;t.hidden=false;
+  clearTimeout(toastT);toastT=setTimeout(function(){t.hidden=true;},3600);
+}
+function confetti(){
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var cols=['#2F6B45','#A6402F','#2F5F8F','#B7821F','#7B3F61','#1F6F6B'];
+  for(var i=0;i<46;i++){
+    var d=document.createElement('i');d.className='conf';
+    d.style.left=(Math.random()*100)+'vw';d.style.background=cols[i%cols.length];
+    d.style.animationDelay=(Math.random()*.5)+'s';d.style.animationDuration=(1.5+Math.random()*1.2)+'s';
+    document.body.appendChild(d);
+    (function(x){setTimeout(function(){x.remove();},3200);})(d);
+  }
+}
+var LOGO='<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 7c4-2 9-2 13 1v19c-4-3-9-3-13-1z" fill="currentColor" opacity=".85"/><path d="M29 7c-4-2-9-2-13 1v19c4-3 9-3 13-1z" fill="currentColor"/></svg>';
+function topbar(right){
+  return '<header class="top"><div class="brand">'+LOGO+'<span>Okuma Yolculuğum</span></div><div class="top-r"><span id="status" class="status" role="status"></span>'+right+'</div></header>';
+}
+function banner(){
+  return '';
+}
+function avatarBtns(sel,act){
+  return '<div class="av-grid">'+AVATARS.map(function(a){return '<button type="button" data-act="'+act+'" data-v="'+a+'" aria-pressed="'+(a===sel)+'" aria-label="Avatar '+a+'">'+a+'</button>';}).join('')+'</div>';
+}
+
+/* ---------- Görünümler ---------- */
+function render(){
+  if(S.view==='login')return renderLogin();
+  if(S.view==='register')return renderRegister();
+  if(S.view==='student')return renderStudent();
+  if(S.view==='tlogin')return renderTLogin();
+  if(S.view==='teacher')return renderTeacher();
+}
+
+function classList(){
+  var set={};Object.keys(S.students).forEach(function(k){var c=(S.students[k].cls||'').trim();if(c)set[c]=1;});
+  return Object.keys(set).sort(function(a,b){return a.localeCompare(b,'tr',{numeric:true});});
+}
+
+function renderLogin(){
+  var classes=classList(),L=S.login;
+  if(!L.cls&&classes.length===1)L.cls=classes[0];
+  var body='<section class="card login"><h1>Merhaba, okuyucu!</h1><p class="lead">Sınıfını seç, adına dokun, şifreni yaz.</p>';
+  if(!S.loaded){body+='<p class="muted">Öğrenci listesi yükleniyor…</p>';}
+  else if(!classes.length){body+='<p class="muted" style="margin-bottom:14px">Henüz kayıtlı öğrenci yok. İlk kaydı sen yapabilirsin.</p>';}
+  else{
+    body+='<div class="chips">'+classes.map(function(c){return '<button class="chip" data-act="pickcls" data-v="'+esc(c)+'" aria-pressed="'+(c===L.cls)+'">'+esc(c)+'</button>';}).join('')+'</div>';
+    if(L.cls){
+      var list=Object.keys(S.students).map(function(k){return S.students[k];}).filter(function(s){return (s.cls||'').trim()===L.cls;}).sort(function(a,b){return a.name.localeCompare(b.name,'tr');});
+      body+='<div class="roster">'+list.map(function(s){return '<button class="pick" data-act="pickstu" data-v="'+esc(s.id)+'" aria-pressed="'+(s.id===L.id)+'"><span class="avatar">'+esc(s.avatar)+'</span><span class="nm">'+esc(s.name)+'</span></button>';}).join('')+'</div>';
+    }
+    if(L.id&&S.students[L.id]){
+      body+='<form data-form="login" style="display:grid;gap:10px"><div class="field"><label for="li-pw">'+esc(S.students[L.id].name)+' için şifre</label><input id="li-pw" type="password" autocomplete="current-password" autofocus></div><div class="err-t">'+esc(L.err)+'</div><button class="btn primary block" type="submit">Giriş yap</button></form>';
+    }
+  }
+  body+='<div class="foot"><button class="link" data-act="toreg">Listede yokum, yeni kayıt</button></div></section>';
+  body+='<p class="foot"><button class="link" data-act="toteacher">Öğretmen girişi</button></p>';
+  app.innerHTML=topbar('')+banner()+body;
+}
+
+function renderRegister(){
+  var classes=classList();
+  app.innerHTML=topbar('')+banner()+'<section class="card login"><h1>Yeni kayıt</h1><p class="lead">Bir kez kaydol, sonra şifrenle her zaman girebilirsin.</p>'+
+  '<form data-form="register" class="form-grid">'+
+  '<div class="field"><label for="r-name">Adım soyadım</label><input id="r-name" type="text" autocomplete="off" maxlength="40"></div>'+
+  '<div class="field"><label for="r-cls">Sınıfım (ör. 5/A)</label><input id="r-cls" type="text" list="r-cls-l" autocomplete="off" maxlength="10"><datalist id="r-cls-l">'+classes.map(function(c){return '<option value="'+esc(c)+'">';}).join('')+'</datalist></div>'+
+  '<div class="field"><label for="r-pw">Şifrem (en az 4 karakter)</label><input id="r-pw" type="text" autocomplete="off" maxlength="20"><span class="small muted">Şifreni unutma, bir yere yaz.</span></div>'+
+  '<div class="field"><label for="r-goal">Bu dönem kaç kitap okuyacağım?</label><input id="r-goal" type="number" inputmode="numeric" min="1" max="99" value="5"></div>'+
+  '<div class="field full"><label>Avatarım</label>'+avatarBtns(S.reg.av,'regav')+'</div>'+
+  '<div class="full err-t" id="r-err">'+esc(S.reg.err)+'</div>'+
+  '<div class="full" style="display:grid;gap:8px"><button class="btn primary block" type="submit">Kaydol ve başla</button><button type="button" class="link" data-act="tologin">Geri dön</button></div></form></section>';
+}
+
+/* Öğrenci */
+function heroHtml(){
+  var me=S.me,c=calc(me),ri=rankOf(c.done),next=RANKS[ri+1];
+  var msg=!me.goal?'Önce bir hedef belirle.':(c.done===0&&!me.books.length)?'İlk kitabını ekle, raf seni bekliyor.':c.pct<34?'Güzel başlangıç, sayfa sayfa ilerliyorsun.':c.pct<67?'Yolun yarısına geldin, devam!':c.pct<100?'Hedefe çok az kaldı!':'Hedefini tamamladın. Raf dolu!';
+  var rankBar='';
+  if(next){
+    var cur=RANKS[ri][0],frac=Math.round((c.done-cur)/(next[0]-cur)*100);
+    rankBar='<div class="rank"><div class="rank-top"><span>Unvanım: <b>'+RANKS[ri][1]+'</b></span><span class="muted">Sıradaki: '+next[1]+' ('+(next[0]-c.done)+' kitap kaldı)</span></div><div class="bar"><i style="width:'+frac+'%"></i></div></div>';
+  }else{rankBar='<div class="rank"><div class="rank-top"><span>Unvanım: <b>'+RANKS[ri][1]+'</b></span><span class="muted">En yüksek unvana ulaştın!</span></div></div>';}
+  var done=me.books.filter(function(b){return b.done;}),rd=me.books.filter(function(b){return !b.done;});
+  var slots=Math.min(30,Math.max(me.goal,done.length+rd.length)),hts=[118,102,126,110,122,106],sh='';
+  for(var i=0;i<slots;i++){
+    var col=(i%6)+1,ht=hts[i%6];
+    if(i<done.length){sh+='<div class="spine" style="height:'+ht+'px;background:var(--s'+col+')" title="'+esc(done[i].t)+'"><span>'+esc(done[i].t)+'</span></div>';}
+    else if(i-done.length<rd.length){var b=rd[i-done.length],p=b.p?Math.round(b.r/b.p*100):0;sh+='<div class="spine part" style="height:'+ht+'px;--fill:'+p+'%;--c:var(--s'+col+')" title="'+esc(b.t)+' (%'+p+')"></div>';}
+    else{sh+='<div class="spine empty" style="height:'+ht+'px"></div>';}
+  }
+  return '<div class="hero-top"><button class="avatar xl" data-act="avtoggle" aria-label="Avatarımı değiştir" aria-expanded="'+S.ui.av+'">'+esc(me.avatar)+'</button>'+
+    '<div class="who"><h1>'+esc(me.name)+'</h1><p>'+esc(me.cls)+' · '+RANKS[ri][1]+'</p></div>'+
+    '<div class="goalbox">Hedefim<div class="stepper"><button data-act="goal" data-v="-1" aria-label="Hedefi azalt">−</button><output aria-live="polite">'+me.goal+'</output><button data-act="goal" data-v="1" aria-label="Hedefi artır">+</button></div>kitap</div></div>'+
+    (S.ui.av?'<div class="picker"><label>Avatarını seç</label><div style="margin-top:8px">'+avatarBtns(me.avatar,'setav')+'</div></div>':'')+
+    '<div class="prog"><div class="pct">'+c.pct+'<small>%</small></div><div><strong>'+c.done+' / '+me.goal+' kitap</strong><p class="muted">'+msg+'</p></div></div>'+
+    '<div class="shelf" role="img" aria-label="Kitap rafı: '+c.done+' bitmiş kitap">'+sh+'</div>'+rankBar;
+}
+function statsHtml(){
+  var c=calc(S.me);
+  return '<div class="stat"><b>'+c.done+'</b><span>Bitirdiğim kitap</span></div><div class="stat"><b>'+c.pages+'</b><span>Okuduğum sayfa</span></div><div class="stat"><b>'+c.reading+'</b><span>Devam eden kitap</span></div>';
+}
+function badgesHtml(){
+  return badgesOf(S.me).map(function(b){return '<div class="badge'+(b.ok?'':' locked')+'"><span class="ic" aria-hidden="true">'+b.ic+'</span><b>'+b.n+'</b><small>'+(b.ok?'Kazandın!':b.d)+'</small></div>';}).join('');
+}
+function bookHtml(b){
+  var p=b.p?Math.round(b.r/b.p*100):0,open=S.ui.open[b.id];
+  var stars='';for(var i=1;i<=5;i++)stars+='<button data-act="star" data-id="'+b.id+'" data-v="'+i+'" class="'+(b.star>=i?'on':'')+'" aria-label="'+i+' yıldız">★</button>';
+  var del=S.ui.del===b.id?'<div class="del-row"><span>Bu kitap silinsin mi?</span><button class="btn danger solid" data-act="delyes" data-id="'+b.id+'">Evet, sil</button><button class="btn" data-act="delno">Vazgeç</button></div>':'<button class="link small" data-act="del" data-id="'+b.id+'" style="justify-self:start;color:var(--muted)">Kitabı sil</button>';
+  return '<article class="book'+(b.done?' done':'')+'"><div class="book-h"><div><h3>'+esc(b.t)+'</h3><p>'+b.p+' sayfa'+(b.done&&b.fin?' · bitirdim: '+esc(b.fin):'')+'</p></div>'+
+    '<label class="check"><input type="checkbox" data-act="done" data-id="'+b.id+'" id="d-'+b.id+'"'+(b.done?' checked':'')+'> Bitirdim</label></div>'+
+    '<div class="bar" aria-hidden="true"><i style="width:'+p+'%"></i></div>'+
+    '<div class="ctrl"><div class="rd"><label for="r-'+b.id+'">Okuduğum sayfa</label><input id="r-'+b.id+'" type="number" inputmode="numeric" min="0" max="'+b.p+'" value="'+b.r+'" data-act="read" data-id="'+b.id+'"></div>'+
+    '<button class="mini" data-act="add" data-id="'+b.id+'" data-v="10">+10</button><button class="mini" data-act="add" data-id="'+b.id+'" data-v="25">+25</button><div class="stars" role="group" aria-label="Puanım">'+stars+'</div></div>'+
+    '<details class="note" data-id="'+b.id+'"'+(open?' open':'')+'><summary>Notlarım'+((b.note||'').trim()?' ✎':'')+'</summary><textarea id="n-'+b.id+'" data-act="note" data-id="'+b.id+'" placeholder="Bu kitapla ilgili not al: sevdiğin karakter, güzel bir cümle, yeni öğrendiğin kelime…" maxlength="2000">'+esc(b.note||'')+'</textarea></details>'+del+'</article>';
+}
+function booksHtml(){
+  var me=S.me;
+  if(!me.books.length)return '<div class="empty-state">Henüz kitap eklemedin. Yukarıya kitabının adını ve sayfa sayısını yazıp Ekle düğmesine bas.</div>';
+  var sorted=me.books.slice().sort(function(a,b){return (a.done?1:0)-(b.done?1:0);});
+  return sorted.map(bookHtml).join('');
+}
+function renderStudent(){
+  app.innerHTML=topbar('<button class="btn" data-act="logout">Çıkış</button>')+banner()+
+  '<section class="card" id="hero">'+heroHtml()+'</section>'+
+  '<div class="stats" id="stats">'+statsHtml()+'</div>'+
+  '<section class="sec"><div class="sec-h"><h2>Rozetlerim</h2></div><div class="badges" id="badges">'+badgesHtml()+'</div></section>'+
+  '<section class="sec"><div class="sec-h"><h2>Kitaplarım</h2></div>'+
+  '<form class="add card" data-form="addbook" style="padding:16px"><div class="field"><label for="ab-t">Kitabın adı</label><input id="ab-t" type="text" maxlength="80" autocomplete="off"></div><div class="field"><label for="ab-p">Sayfa sayısı</label><input id="ab-p" type="number" inputmode="numeric" min="1" max="3000"></div><button class="btn primary" type="submit">Ekle</button></form>'+
+  '<div class="err-t" id="ab-err" style="margin-top:6px"></div><div class="books" id="blist">'+booksHtml()+'</div></section>';
+}
+function refreshStudent(parts){
+  if(parts.indexOf('hero')>-1)document.getElementById('hero').innerHTML=heroHtml();
+  document.getElementById('stats').innerHTML=statsHtml();
+  document.getElementById('badges').innerHTML=badgesHtml();
+  if(parts.indexOf('books')>-1)document.getElementById('blist').innerHTML=booksHtml();
+}
+function findBook(id){return S.me.books.filter(function(b){return b.id===id;})[0];}
+function setRead(b,v){
+  var before=calc(S.me).done,was=b.done;
+  b.r=num(v,0,b.p);b.done=b.r>=b.p;
+  if(b.done&&!was)b.fin=today();
+  if(!b.done)b.fin='';
+  touch();refreshStudent(['hero','books']);
+  if(b.done&&!was)celebrate(b,before);
+}
+function celebrate(b,before){
+  var c=calc(S.me);confetti();
+  if(S.me.goal>0&&before<S.me.goal&&c.done>=S.me.goal)toast('Hedefini tamamladın! Rafın doldu, harikasın!');
+  else toast('“'+b.t+'” bitti! Rafına bir kitap daha eklendi.');
+}
+
+/* Öğretmen */
+function renderTLogin(){
+  var first=S.teacherHash===null;
+  app.innerHTML=topbar('')+banner()+'<section class="card login"><h1>Öğretmen paneli</h1><p class="lead">'+(first?'Bu panel için bir ana şifre belirle. Bunu sadece sen bileceksin.':'Devam etmek için ana şifreni yaz.')+'</p>'+
+  '<form data-form="'+(first?'tsetup':'tlogin')+'" style="display:grid;gap:10px"><div class="field"><label for="t-pw">Ana şifre'+(first?' (en az 4 karakter)':'')+'</label><input id="t-pw" type="password" autocomplete="off"></div><div class="err-t" id="t-err">'+esc(S.ui.tmsg)+'</div><button class="btn primary block" type="submit">'+(first?'Şifreyi kaydet ve gir':'Giriş yap')+'</button></form>'+
+  '<div class="foot"><button class="link" data-act="tologin">Öğrenci girişine dön</button></div></section>';
+}
+function allStats(){
+  return Object.keys(S.students).map(function(k){var s=S.students[k];return {s:s,c:calc(s)};});
+}
+function renderTeacher(){
+  var classes=classList();
+  app.innerHTML=topbar('<button class="btn" data-act="csv">Tablo indir (CSV / Excel)</button><button class="btn" data-act="tlogout">Çıkış</button>')+banner()+
+  '<h1 style="font-size:26px;margin:4px 0 14px">Öğretmen paneli</h1>'+
+  '<div class="sum" id="tsum"></div>'+
+  '<section class="sec"><div class="sec-h"><h2>Sınıflara göre</h2></div><div class="card cls-list" id="tcls"></div></section>'+
+  '<section class="sec"><div class="sec-h"><h2>Öğrenciler</h2></div>'+
+  '<div class="toolbar"><input id="tq" type="text" placeholder="Öğrenci adı ara…" value="'+esc(S.tf.q)+'" aria-label="Öğrenci ara">'+
+  '<select id="tcf" aria-label="Sınıf filtresi"><option value="">Tüm sınıflar</option>'+classes.map(function(c){return '<option value="'+esc(c)+'"'+(c===S.tf.cls?' selected':'')+'>'+esc(c)+'</option>';}).join('')+'</select>'+
+  '<select id="tso" aria-label="Sıralama"><option value="name"'+(S.tf.sort==='name'?' selected':'')+'>Ada göre</option><option value="pct"'+(S.tf.sort==='pct'?' selected':'')+'>İlerlemeye göre</option><option value="last"'+(S.tf.sort==='last'?' selected':'')+'>Son etkinliğe göre</option></select></div>'+
+  '<div id="tlist"></div></section>'+
+  '<section class="sec"><details class="note"><summary>Ana şifreyi değiştir</summary><form data-form="tchange" style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap"><input id="t-new" type="password" placeholder="Yeni ana şifre" style="flex:1;min-width:180px" autocomplete="off"><button class="btn" type="submit">Değiştir</button></form><div class="err-t" id="t-chg"></div></details></section>'+
+  '<div id="modal"></div>';
+  renderTeacherData();
+  if(S.ui.modal)renderModal();
+}
+function renderTeacherData(){
+  if(!document.getElementById('tlist'))return;
+  var all=allStats(),tot=all.reduce(function(a,x){a.done+=x.c.done;a.pages+=x.c.pages;if(x.s.goal>0&&x.c.done>=x.s.goal)a.goal++;return a;},{done:0,pages:0,goal:0});
+  function tile(n,l){return '<div class="stat"><b>'+n+'</b><span>'+l+'</span></div>';}
+  document.getElementById('tsum').innerHTML=tile(all.length,'Kayıtlı öğrenci')+tile(tot.done,'Bitirilen kitap')+tile(tot.pages,'Okunan sayfa')+tile(tot.goal,'Hedefini tamamlayan');
+  var by={};all.forEach(function(x){var c=(x.s.cls||'').trim()||'Sınıfsız';(by[c]=by[c]||[]).push(x);});
+  var keys=Object.keys(by).sort(function(a,b){return a.localeCompare(b,'tr',{numeric:true});});
+  document.getElementById('tcls').innerHTML=keys.length?keys.map(function(k){
+    var arr=by[k],avg=Math.round(arr.reduce(function(a,x){return a+x.c.pct;},0)/arr.length),d=arr.reduce(function(a,x){return a+x.c.done;},0);
+    return '<div class="cls-row"><b>'+esc(k)+'</b><div class="bar" aria-hidden="true"><i style="width:'+avg+'%"></i></div><span class="small muted">'+arr.length+' öğrenci · '+d+' kitap · ort. %'+avg+'</span></div>';
+  }).join(''):'<p class="muted">Henüz kayıtlı öğrenci yok.</p>';
+  var q=S.tf.q.trim().toLocaleLowerCase('tr');
+  var rows=all.filter(function(x){
+    if(S.tf.cls&&(x.s.cls||'').trim()!==S.tf.cls)return false;
+    if(q&&x.s.name.toLocaleLowerCase('tr').indexOf(q)===-1)return false;return true;
+  });
+  rows.sort(function(a,b){
+    if(S.tf.sort==='pct')return b.c.pct-a.c.pct||a.s.name.localeCompare(b.s.name,'tr');
+    if(S.tf.sort==='last')return (a.s.updated||0)-(b.s.updated||0);
+    return a.s.name.localeCompare(b.s.name,'tr');
+  });
+  document.getElementById('tlist').innerHTML=rows.length?rows.map(function(x){
+    var s=x.s,c=x.c,stale=!(s.books||[]).length?'Henüz kitap eklemedi':((Date.now()-(s.updated||0))>14*86400000?'14+ gündür etkinlik yok':'');
+    return '<button class="srow" data-act="openstu" data-id="'+esc(s.id)+'"><span class="nm"><span class="avatar">'+esc(s.avatar)+'</span><div><b>'+esc(s.name)+'</b><small>'+esc(s.cls)+'</small></div></span>'+
+    '<span><span class="small"><b>'+c.done+'</b> / '+s.goal+' kitap · %'+c.pct+'</span><div class="bar" aria-hidden="true"><i style="width:'+c.pct+'%"></i></div></span>'+
+    '<span class="pgs">'+c.pages+' sf.</span><span class="small muted">Son: '+timeAgo(s.updated)+(stale?'<br><span class="tag">'+stale+'</span>':'')+'</span></button>';
+  }).join(''):'<div class="empty-state">Bu filtreyle eşleşen öğrenci yok.</div>';
+}
+function renderModal(){
+  var host=document.getElementById('modal');if(!host)return;
+  var s=S.students[S.ui.modal];
+  if(!s){host.innerHTML='';S.ui.modal=null;return;}
+  var c=calc(s),ri=rankOf(c.done);
+  var books=(s.books||[]).map(function(b){
+    var p=b.p?Math.round(b.r/b.p*100):0;
+    return '<div class="ro-book"><div class="book-h"><div><h3 style="font-size:16px">'+esc(b.t)+'</h3><p>'+b.r+' / '+b.p+' sayfa'+(b.done?' · bitti '+esc(b.fin||''):' · devam ediyor')+(b.star?' · '+'★'.repeat(b.star):'')+'</p></div><span class="tag '+(b.done?'ok':'')+'">'+(b.done?'Bitti':'%'+p)+'</span></div><div class="bar" aria-hidden="true"><i style="width:'+p+'%"></i></div>'+((b.note||'').trim()?'<p class="note">'+esc(b.note)+'</p>':'<p class="small muted">Not yazılmamış.</p>')+'</div>';
+  }).join('')||'<div class="empty-state">Bu öğrenci henüz kitap eklemedi.</div>';
+  host.innerHTML='<div class="modal" data-act="mbg"><div class="sheet" role="dialog" aria-modal="true" aria-label="'+esc(s.name)+' ayrıntıları">'+
+  '<div class="sheet-h"><span class="avatar xl" style="width:60px;height:60px;font-size:32px">'+esc(s.avatar)+'</span><div style="flex:1;min-width:0"><h2>'+esc(s.name)+'</h2><p class="muted small">'+esc(s.cls)+' · '+RANKS[ri][1]+' · hedef '+s.goal+' kitap · '+c.done+' bitti · '+c.pages+' sayfa</p></div><button class="btn" data-act="mclose">Kapat</button></div>'+
+  books+
+  '<form data-form="resetpw" style="display:flex;gap:10px;flex-wrap:wrap;align-items:end"><div class="field" style="flex:1;min-width:180px"><label for="m-pw">Öğrencinin şifresini sıfırla</label><input id="m-pw" type="text" placeholder="Yeni şifre (en az 4 karakter)" autocomplete="off"></div><button class="btn" type="submit">Sıfırla</button></form><div class="err-t" id="m-msg"></div>'+
+  (S.ui.modalDel?'<div class="del-row"><span>'+esc(s.name)+' ve tüm kitapları silinsin mi?</span><button class="btn danger solid" data-act="stuyes">Evet, sil</button><button class="btn" data-act="stuno">Vazgeç</button></div>':'<button class="link small" data-act="studel" style="justify-self:start;color:var(--accent)">Öğrenciyi sil</button>')+
+  '</div></div>';
+}
+function csvExport(){
+  var rows=[['Ad Soyad','Sınıf','Hedef','Bitirilen kitap','Toplam okunan sayfa','Kitap adı','Sayfa sayısı','Okunan sayfa','Durum','Puan','Not']];
+  Object.keys(S.students).map(function(k){return S.students[k];}).sort(function(a,b){return (a.cls||'').localeCompare(b.cls||'','tr',{numeric:true})||a.name.localeCompare(b.name,'tr');}).forEach(function(s){
+    var c=calc(s);
+    if(!(s.books||[]).length){rows.push([s.name,s.cls,s.goal,c.done,c.pages,'','','','','','']);return;}
+    s.books.forEach(function(b){rows.push([s.name,s.cls,s.goal,c.done,c.pages,b.t,b.p,b.r,b.done?'Bitti':'Devam ediyor',b.star||'',(b.note||'').replace(/\s+/g,' ')]);});
+  });
+  var txt='\uFEFF'+rows.map(function(r){return r.map(function(v){return '"'+String(v).replace(/"/g,'""')+'"';}).join(',');}).join('\n');
+  try {
+    var blob = new Blob([txt], {type: 'text/csv;charset=utf-8;'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'okuma-takip-'+today()+'.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    toast('Tablo (CSV) başarıyla indirildi.');
+  } catch(e) {
+    toast('Tablo indirilemedi.');
+  }
+}
+
+/* ---------- Olaylar ---------- */
+function act(a,t,e){
+  var v=t.dataset.v,id=t.dataset.id;
+  switch(a){
+    case 'pickcls':S.login.cls=v;S.login.id='';S.login.err='';renderLogin();break;
+    case 'pickstu':S.login.id=v;S.login.err='';renderLogin();var pw=document.getElementById('li-pw');if(pw)pw.focus();break;
+    case 'toreg':S.view='register';S.reg.err='';render();break;
+    case 'tologin':S.view='login';S.ui.tmsg='';render();break;
+    case 'toteacher':S.view='tlogin';S.ui.tmsg='';
+      (async function(){S.teacherHash=await getTeacherHash();render();})();break;
+    case 'regav':S.reg.av=v;var g=document.querySelectorAll('[data-act="regav"]');g.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.v===v);});break;
+    case 'logout':flush().then(function(){S.me=null;S.view='login';S.login={cls:'',id:'',err:''};S.ui={open:{},del:null,av:false,modal:null,modalDel:false,tmsg:''};render();});break;
+    case 'avtoggle':S.ui.av=!S.ui.av;refreshStudent(['hero']);break;
+    case 'setav':S.me.avatar=v;S.ui.av=false;touch();refreshStudent(['hero']);break;
+    case 'goal':S.me.goal=num(S.me.goal+parseInt(v,10),1,99);touch();refreshStudent(['hero']);break;
+    case 'add':var b=findBook(id);if(b)setRead(b,b.r+parseInt(v,10));break;
+    case 'star':var bs=findBook(id);if(bs){bs.star=bs.star===parseInt(v,10)?0:parseInt(v,10);touch();refreshStudent(['books']);}break;
+    case 'del':S.ui.del=id;refreshStudent(['books']);break;
+    case 'delno':S.ui.del=null;refreshStudent(['books']);break;
+    case 'delyes':S.me.books=S.me.books.filter(function(x){return x.id!==id;});S.ui.del=null;touch();refreshStudent(['hero','books']);break;
+    case 'tlogout':S.view='login';S.ui.modal=null;render();break;
+    case 'openstu':S.ui.modal=id;S.ui.modalDel=false;renderModal();break;
+    case 'mclose':S.ui.modal=null;renderModal();break;
+    case 'mbg':if(e.target===t){S.ui.modal=null;renderModal();}break;
+    case 'studel':S.ui.modalDel=true;renderModal();break;
+    case 'stuno':S.ui.modalDel=false;renderModal();break;
+    case 'stuyes':var sid=S.ui.modal;removeStudent(sid).then(function(){S.ui.modal=null;S.ui.modalDel=false;renderModal();renderTeacherData();toast('Öğrenci silindi.');}).catch(function(){toast('Silinemedi, tekrar dene.');});break;
+    case 'csv':csvExport();break;
+  }
+}
+app.addEventListener('click',function(e){
+  var t=e.target.closest('[data-act]');if(!t||t.matches('input,textarea'))return;
+  act(t.dataset.act,t,e);
+});
+app.addEventListener('change',function(e){
+  var t=e.target,a=t.dataset&&t.dataset.act;
+  if(a==='done'){
+    var b=findBook(t.dataset.id);if(!b)return;
+    var before=calc(S.me).done;
+    if(t.checked){b.r=b.p;b.done=true;b.fin=today();touch();refreshStudent(['hero','books']);celebrate(b,before);}
+    else{b.done=false;b.fin='';if(b.r>=b.p)b.r=Math.max(0,b.p-1);touch();refreshStudent(['hero','books']);}
+  }else if(a==='read'){var bb=findBook(t.dataset.id);if(bb)setRead(bb,t.value);}
+  else if(a==='note'){refreshStudent([]);}
+  else if(t.id==='tcf'){S.tf.cls=t.value;renderTeacherData();}
+  else if(t.id==='tso'){S.tf.sort=t.value;renderTeacherData();}
+});
+app.addEventListener('input',function(e){
+  var t=e.target;
+  if(t.dataset&&t.dataset.act==='note'){var b=findBook(t.dataset.id);if(b){b.note=t.value;touch();}}
+  else if(t.id==='tq'){S.tf.q=t.value;renderTeacherData();}
+});
+app.addEventListener('toggle',function(e){
+  var d=e.target;if(d.matches&&d.matches('details.note[data-id]')){S.ui.open[d.dataset.id]=d.open;}
+},true);
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&S.ui.modal){S.ui.modal=null;renderModal();}});
+
+app.addEventListener('submit',async function(e){
+  e.preventDefault();
+  var f=e.target.dataset.form;
+  if(f==='login'){
+    var L=S.login,s=S.students[L.id],pin=document.getElementById('li-pw').value;
+    if(!s)return;
+    var h=await hash(s.id,pin);
+    if(h!==s.pw){L.err='Şifre yanlış, tekrar dene.';renderLogin();return;}
+    S.me=clone(s);S.me.books=S.me.books||[];S.view='student';S.ui.av=false;render();
+    toast('Hoş geldin, '+s.name.split(' ')[0]+'!');
+  }
+  else if(f==='register'){
+    var name=document.getElementById('r-name').value.trim().replace(/\s+/g,' '),cls=document.getElementById('r-cls').value.trim().toUpperCase(),pw=document.getElementById('r-pw').value,goal=num(document.getElementById('r-goal').value,1,99),err=document.getElementById('r-err');
+    if(!name||!cls){err.textContent='Adını ve sınıfını yaz.';return;}
+    if(pw.length<4){err.textContent='Şifre en az 4 karakter olmalı.';return;}
+    var id=slug(name)+'_'+slug(cls);
+    if(S.students[id]){err.textContent='Bu adla bu sınıfta kayıt var. Giriş ekranından gir.';return;}
+    var st={id:id,name:name,cls:cls,avatar:S.reg.av,pw:await hash(id,pw),goal:goal,books:[],created:Date.now(),updated:Date.now()};
+    try{await persist(st);}catch(x){err.textContent='Kayıt yapılamadı. Biraz sonra tekrar dene.';return;}
+    S.me=clone(st);S.view='student';render();toast('Kayıt tamam! İlk kitabını ekleyebilirsin.');
+  }
+  else if(f==='addbook'){
+    var t=document.getElementById('ab-t'),p=document.getElementById('ab-p'),er=document.getElementById('ab-err');
+    var title=t.value.trim(),pages=num(p.value,0,3000);
+    if(!title||pages<1){er.textContent='Kitabın adını ve sayfa sayısını yaz.';return;}
+    er.textContent='';
+    S.me.books.push({id:rid(),t:title,p:pages,r:0,done:false,star:0,note:'',fin:'',added:Date.now()});
+    t.value='';p.value='';touch();refreshStudent(['hero','books']);toast('Kitap eklendi. İyi okumalar!');
+  }
+  else if(f==='tlogin'){
+    var ok=(await hash('teacher',document.getElementById('t-pw').value))===S.teacherHash;
+    if(!ok){S.ui.tmsg='Şifre yanlış.';document.getElementById('t-err').textContent=S.ui.tmsg;return;}
+    S.ui.tmsg='';S.view='teacher';render();
+  }
+  else if(f==='tsetup'){
+    var v=document.getElementById('t-pw').value;
+    if(v.length<4){document.getElementById('t-err').textContent='En az 4 karakter olmalı.';return;}
+    var th=await hash('teacher',v);
+    try{await setTeacherHash(th);}catch(x){document.getElementById('t-err').textContent='Kaydedilemedi, tekrar dene.';return;}
+    S.teacherHash=th;S.view='teacher';render();
+  }
+  else if(f==='tchange'){
+    var nv=document.getElementById('t-new').value,m=document.getElementById('t-chg');
+    if(nv.length<4){m.textContent='En az 4 karakter olmalı.';return;}
+    var nh=await hash('teacher',nv);
+    try{await setTeacherHash(nh);S.teacherHash=nh;m.textContent='Ana şifre değişti.';document.getElementById('t-new').value='';}catch(x){m.textContent='Kaydedilemedi.';}
+  }
+  else if(f==='resetpw'){
+    var np=document.getElementById('m-pw').value,mm=document.getElementById('m-msg'),stu=S.students[S.ui.modal];
+    if(np.length<4){mm.textContent='En az 4 karakter olmalı.';return;}
+    var c2=clone(stu);c2.pw=await hash(c2.id,np);
+    try{await persist(c2);mm.textContent='Şifre sıfırlandı. Yeni şifre: '+np;document.getElementById('m-pw').value='';}catch(x){mm.textContent='Kaydedilemedi.';}
+  }
+});
+
+/* ---------- Veri değişince ---------- */
+function onData(){
+  S.loaded=true;
+  var a=document.activeElement,typing=a&&app.contains(a)&&/INPUT|TEXTAREA/.test(a.tagName);
+  if(S.view==='teacher'){renderTeacherData();if(S.ui.modal&&!typing)renderModal();}
+  else if((S.view==='login')&&!typing)renderLogin();
+}
+
+/* ---------- Başlangıç ---------- */
+(async function boot(){
+  render();
+  var db=null;
+  try{
+    var p=window.claude&&window.claude.use?window.claude.use('db'):null;
+    db=await Promise.race([Promise.resolve(p),new Promise(function(r){setTimeout(function(){r(null);},6000);})]);
+  }catch(e){db=null;}
+  try{
+    var dp=window.claude&&window.claude.use?window.claude.use('downloads'):null;
+    Promise.resolve(dp).then(function(d){S.dl=d||null;if(S.view==='teacher')render();}).catch(function(){});
+  }catch(e){}
+  if(db){
+    S.cloud=true;S.db=db;
+    try{
+      db.collection('students').onSnapshot(function(snap){
+        var m={};snap.docs.forEach(function(d){m[d.id]=d.data();});
+        if(S.me&&S.view==='student')m[S.me.id]=m[S.me.id]||S.me;
+        S.students=m;onData();
+      },function(){S.cloud=false;loadLocal();S.loaded=true;render();});
+    }catch(e){S.cloud=false;loadLocal();S.loaded=true;render();}
+    setTimeout(function(){if(!S.loaded&&S.view==='login'){var el=app.querySelector('.login .muted');if(el)el.textContent='Liste yüklenemedi. Bağlantını kontrol edip sayfayı yenile.';}},10000);
+  }else{loadLocal();S.loaded=true;render();}
+})();
+})();
+</script>
+
+</body></html>
