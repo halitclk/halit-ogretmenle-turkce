@@ -246,3 +246,78 @@ if (contactForm) {
 // Başlat
 initTheme();
 renderMaterials();
+
+// Eğitici Oyunlar Veritabanı ve Değiştirme Mantığı
+const educationalGames = {
+    genel: {
+        title: "🎯 Genel Anlamlı Kelimeler Macerası",
+        badge: "5 ve 6. Sınıf • Sözcükte Anlam",
+        desc: "Genel ve özel anlamlı sözcükleri macera dolu adımlarla ayırt etmeyi sağlayan, doğru eşleştirmelerle puan toplayıp görevleri tamamlayabileceğiniz interaktif öğrenme oyunu.",
+        url: "https://sites.google.com/view/genel-anlaml-kelimeler-maceras/full-page-embed",
+        frameTitle: "Genel Anlamlı Kelimeler Macerası — Oyun Ekranı"
+    },
+    ozet: {
+        title: "📖 Özet Çıkarma Macerası — Hikâye Oyunu",
+        badge: "Tüm Sınıflar • Paragraf & Metin Çözümleme",
+        desc: "Sürükleyici hikâyeleri okuyup ana düşünceyi, olay örgüsünü ve kritik detayları yakalayarak doğru özet adımlarını keşfedeceğiniz interaktif Türkçe oyunu.",
+        url: "https://sites.google.com/view/ozetckarmamacerasi-hikye-oyunu/full-page-embed",
+        frameTitle: "Özet Çıkarma Macerası — Oyun Ekranı"
+    }
+};
+
+window.switchGame = function(gameKey) {
+    const game = educationalGames[gameKey];
+    if (!game) return;
+
+    const titleEl = document.getElementById('activeGameTitle');
+    const badgeEl = document.getElementById('activeGameBadge');
+    const descEl = document.getElementById('activeGameDesc');
+    const fsEl = document.getElementById('activeGameFullscreen');
+    const openTabEl = document.getElementById('activeGameOpenTab');
+    const frameTitleEl = document.getElementById('activeGameFrameTitle');
+    const frameEl = document.getElementById('activeGameFrame');
+
+    if (titleEl) titleEl.innerText = game.title;
+    if (badgeEl) badgeEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> ${game.badge}`;
+    if (descEl) descEl.innerText = game.desc;
+    if (fsEl) fsEl.href = game.url;
+    if (openTabEl) openTabEl.href = game.url;
+    if (frameTitleEl) frameTitleEl.innerText = game.frameTitle;
+    if (frameEl) frameEl.src = game.url;
+
+    // Seçici butonların görsel aktiflik durumu
+    const btnGenel = document.getElementById('game-btn-genel');
+    const btnOzet = document.getElementById('game-btn-ozet');
+
+    if (btnGenel && btnOzet) {
+        if (gameKey === 'genel') {
+            btnGenel.className = "game-select-btn text-left p-5 rounded-2xl border-2 transition-all duration-300 border-amber-600 bg-amber-50/70 dark:bg-amber-950/40 shadow-md";
+            const statGenel = btnGenel.querySelector('.game-status-label');
+            if (statGenel) {
+                statGenel.innerHTML = `<i class="ph-bold ph-play-circle text-base"></i> Aktif Oyun`;
+                statGenel.className = "game-status-label text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1";
+            }
+
+            btnOzet.className = "game-select-btn text-left p-5 rounded-2xl border-2 transition-all duration-300 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-amber-400";
+            const statOzet = btnOzet.querySelector('.game-status-label');
+            if (statOzet) {
+                statOzet.innerHTML = `<i class="ph-bold ph-arrow-circle-right text-base"></i> Oynamak İçin Seç`;
+                statOzet.className = "game-status-label text-xs font-bold text-slate-400 flex items-center gap-1";
+            }
+        } else {
+            btnOzet.className = "game-select-btn text-left p-5 rounded-2xl border-2 transition-all duration-300 border-amber-600 bg-amber-50/70 dark:bg-amber-950/40 shadow-md";
+            const statOzet = btnOzet.querySelector('.game-status-label');
+            if (statOzet) {
+                statOzet.innerHTML = `<i class="ph-bold ph-play-circle text-base"></i> Aktif Oyun`;
+                statOzet.className = "game-status-label text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1";
+            }
+
+            btnGenel.className = "game-select-btn text-left p-5 rounded-2xl border-2 transition-all duration-300 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-amber-400";
+            const statGenel = btnGenel.querySelector('.game-status-label');
+            if (statGenel) {
+                statGenel.innerHTML = `<i class="ph-bold ph-arrow-circle-right text-base"></i> Oynamak İçin Seç`;
+                statGenel.className = "game-status-label text-xs font-bold text-slate-400 flex items-center gap-1";
+            }
+        }
+    }
+};

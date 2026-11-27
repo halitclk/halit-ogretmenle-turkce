@@ -578,25 +578,56 @@
                     <p class="text-slate-500 dark:text-slate-400 text-sm mt-3">Türkçe dersi konularını eğlenceli kurgularla pekiştiren, kelime dağarcığını geliştiren interaktif oyun alanı.</p>
                 </div>
 
-                <!-- Oyun Kutusu (Genel Anlamlı Kelimeler Macerası) -->
+                <!-- Oyun Seçici Kartları (1. ve 2. Oyun) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                    <!-- 1. Oyun Kartı: Genel Anlamlı Kelimeler Macerası -->
+                    <button onclick="switchGame('genel')" id="game-btn-genel" class="game-select-btn text-left p-5 rounded-2xl border-2 transition-all duration-300 border-amber-600 bg-amber-50/70 dark:bg-amber-950/40 shadow-md">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300">5 ve 6. Sınıf</span>
+                            <span class="game-status-label text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                                <i class="ph-bold ph-play-circle text-base"></i> Aktif Oyun
+                            </span>
+                        </div>
+                        <h4 class="font-bold text-base text-slate-900 dark:text-white flex items-center gap-2">
+                            <span>🎯 Genel Anlamlı Kelimeler Macerası</span>
+                        </h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Sözcükte anlam, genel-özel kavram eşleştirmeleri ve puan toplama.</p>
+                    </button>
+
+                    <!-- 2. Oyun Kartı: Özet Çıkarma Macerası -->
+                    <button onclick="switchGame('ozet')" id="game-btn-ozet" class="game-select-btn text-left p-5 rounded-2xl border-2 transition-all duration-300 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-amber-400">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-rose-100 dark:bg-rose-900/60 text-rose-800 dark:text-rose-300">Tüm Sınıflar</span>
+                            <span class="game-status-label text-xs font-bold text-slate-400 flex items-center gap-1">
+                                <i class="ph-bold ph-arrow-circle-right text-base"></i> Oynamak İçin Seç
+                            </span>
+                        </div>
+                        <h4 class="font-bold text-base text-slate-900 dark:text-white flex items-center gap-2">
+                            <span>📖 Özet Çıkarma Macerası (Hikâye Oyunu)</span>
+                        </h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Hikâye metinlerini analiz etme, ana fikir bulma ve doğru özet adımları.</p>
+                    </button>
+                </div>
+
+                <!-- Oyun Kutusu (Aktif Seçilen Oyun) -->
                 <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-10 border border-amber-200/80 dark:border-slate-700 shadow-xl">
                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-6">
                         <div>
-                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-bold mb-2">
+                            <div id="activeGameBadge" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-bold mb-2">
                                 <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                                 5 ve 6. Sınıf • Sözcükte Anlam
                             </div>
-                            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                            <h3 id="activeGameTitle" class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
                                 <span>🎯 Genel Anlamlı Kelimeler Macerası</span>
                             </h3>
-                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 max-w-2xl leading-relaxed">
+                            <p id="activeGameDesc" class="text-sm text-slate-500 dark:text-slate-400 mt-2 max-w-2xl leading-relaxed">
                                 Genel ve özel anlamlı sözcükleri macera dolu adımlarla ayırt etmeyi sağlayan, doğru eşleştirmelerle puan toplayıp görevleri tamamlayabileceğiniz interaktif öğrenme oyunu.
                             </p>
                         </div>
                         
                         <!-- Aksiyon Butonları -->
                         <div class="flex items-center gap-3 shrink-0">
-                            <a href="https://sites.google.com/view/genel-anlaml-kelimeler-maceras/full-page-embed" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs sm:text-sm transition-colors shadow-md shadow-amber-600/30 flex items-center gap-2">
+                            <a id="activeGameFullscreen" href="https://sites.google.com/view/genel-anlaml-kelimeler-maceras/full-page-embed" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs sm:text-sm transition-colors shadow-md shadow-amber-600/30 flex items-center gap-2">
                                 <i class="ph-bold ph-arrows-out"></i>
                                 Tam Ekranda Oyna
                             </a>
@@ -610,13 +641,13 @@
                                 <span class="w-3 h-3 rounded-full bg-rose-400 inline-block"></span>
                                 <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>
                                 <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block"></span>
-                                <span class="font-semibold text-slate-700 dark:text-slate-300 ml-2">Genel Anlamlı Kelimeler Macerası — Oyun Ekranı</span>
+                                <span id="activeGameFrameTitle" class="font-semibold text-slate-700 dark:text-slate-300 ml-2">Genel Anlamlı Kelimeler Macerası — Oyun Ekranı</span>
                             </div>
-                            <a href="https://sites.google.com/view/genel-anlaml-kelimeler-maceras/full-page-embed" target="_blank" rel="noopener noreferrer" class="hover:text-amber-600 font-semibold flex items-center gap-1">
+                            <a id="activeGameOpenTab" href="https://sites.google.com/view/genel-anlaml-kelimeler-maceras/full-page-embed" target="_blank" rel="noopener noreferrer" class="hover:text-amber-600 font-semibold flex items-center gap-1">
                                 Ayrı sekmede aç <i class="ph-bold ph-arrow-square-out"></i>
                             </a>
                         </div>
-                        <iframe src="https://sites.google.com/view/genel-anlaml-kelimeler-maceras/full-page-embed" title="Genel Anlamlı Kelimeler Macerası Oyunu" class="w-full h-[650px] sm:h-[750px] border-0" allow="fullscreen" loading="lazy"></iframe>
+                        <iframe id="activeGameFrame" src="https://sites.google.com/view/genel-anlaml-kelimeler-maceras/full-page-embed" title="Eğitici Türkçe Oyunu" class="w-full h-[650px] sm:h-[750px] border-0" allow="fullscreen" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
